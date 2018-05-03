@@ -17,7 +17,7 @@ const middleWare = [
   })
 ];
 
-restServer.mountMiddleware(...middleWare);
+restServer.use(...middleWare);
 
 restServer.use('/api', router);
 
