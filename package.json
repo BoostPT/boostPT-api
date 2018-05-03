@@ -1,0 +1,25 @@
+{
+  "name": "codesling.io-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "start": "npm-run-all -p start:rest-server",
+    "start:rest-server": "cd rest-server && npm run start",
+    "setup": "npm-run-all -s setup:rest-server",
+    "setup:rest-server": "cd rest-server && npm install",
+    "db:setup:rest-server": "cd rest-server && babel-node src/config/database/setup.js",
+    "buildEnv": "node bin/buildEnv.js"
+  },
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "env": "^0.0.2",
+    "lodash": "^4.17.4",
+    "nodemon": "^1.17.3",
+    "npm-run-all": "^4.1.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0"
+  }
+}
