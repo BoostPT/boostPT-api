@@ -13,9 +13,6 @@
     "buildEnv": "node bin/buildEnv.js"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-register": "^6.26.0",
     "dotenv": "^5.0.1",
     "env": "^0.0.2",
     "lodash": "^4.17.4",
