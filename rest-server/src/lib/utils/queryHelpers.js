@@ -1,15 +1,26 @@
 import db from '../../config/database';
-import { queryPayloadOrganizer } from './util';
 import {
   success,
   error
 } from '../log';
 
-/**
- * These functions are for basic CRUD operations only.
- * 
- * Create unique controllers and queries if you need to manipulate the data
- */
+const queryPayloadOrganizer = (payload, columns) => {
+    /**
+     * @param {Object} payload - payload from request body
+     * @param {Array} columns - columns for the table in the precise order
+     * 
+     * @return {Array} values from request body loaded into an array with a set order
+     */
+    if (columns.length) {
+      const values = [];
+      columns.forEach(column => {
+        values.push(payload[column]);
+      });
+      return values;
+    } else {
+      return columns;
+    }
+  };
 
 export const globalQueryHelper = async (payload, queryString, name, columns=[]) => {
   /**
