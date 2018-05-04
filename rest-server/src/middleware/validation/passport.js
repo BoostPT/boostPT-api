@@ -10,6 +10,7 @@ const localOptions = {
 };
 
 passport.use(new LocalStrategy(localOptions, async (email, password, done) => {
+  console.log("made it into passport middleware");
   try {
     const { rows } = await loginQuery({email});
     if(!rows.length){
