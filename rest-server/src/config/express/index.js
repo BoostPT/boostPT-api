@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import helmet from 'helmet';
+import cookieParser from 'cookie-parser';
 
 import router from '../../routes';
 
@@ -14,10 +15,16 @@ const middleWare = [
   cors({
     allowedHeaders: 'Content-Type, authorization',
     methods: ['GET, POST, PUT, DELETE', 'OPTIONS'],
-  })
+  }),
+  cookieParser(process.env.TOKEN_SECRET)
 ];
 
 restServer.use(...middleWare);
+
+if (process.env.DEBUG === 'TRUE') {
+  const morgan = require('morgan');
+  restServer.use(morgan('dev'));
+}
 
 restServer.use('/api', router);
 

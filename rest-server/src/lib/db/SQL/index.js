@@ -50,7 +50,7 @@ export const createUserTable = async () => {
       (
       id SERIAL,
       email VARCHAR(255) UNIQUE NOT NULL,
-      username VARCHAR(255) NOT NULL,
+      username VARCHAR(255) UNIQUE NOT NULL,
       password VARCHAR(255) NOT NULL,
       isTrainer BOOLEAN NOT NULL,
       CONSTRAINT users_pk 
@@ -80,15 +80,10 @@ export const addUserDummyData = async () => {
     await db.query(
       `INSERT INTO users (email, username, password, istrainer) VALUES ('${'gus@cheesemail.com'}', '${'gus'}', '${'1234'}', '${'true'}')`
     );
-    success('added Gus as trainer');
-    try {
-      await db.query(
-        `INSERT INTO users (email, username, password, istrainer) VALUES ('${'aaron@gmail.com'}', '${'Aaron Melendez'}', '${'1234'}', '${'false'}')`
-      );
-      success('added Aaron as an athlete');
-    } catch (err) {
-      error('error adding dummy user', err);
-    }
+    await db.query(
+      `INSERT INTO users (email, username, password, istrainer) VALUES ('${'aaron@gmail.com'}', '${'AaronMelendez'}', '${'1234'}', '${'false'}')`
+    );
+    success('successfully seeded users table');
   } catch (err) {
     error('error adding dummy user', err);
   }
