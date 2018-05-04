@@ -4,7 +4,7 @@ import {
   error
 } from '../log';
 
-const queryPayloadOrganizer = (payload, columns) => {
+export const queryPayloadOrganizer = (payload, columns) => {
     /**
      * @param {Object} payload - payload from request body
      * @param {Array} columns - columns for the table in the precise order

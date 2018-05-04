@@ -2,6 +2,10 @@ import {
   sign,
   verify,
 } from 'jsonwebtoken';
+import {
+  success,
+  error
+} from '../../lib/log';
 
 export const genToken = (id, email) => {
   const token = {};
@@ -17,8 +21,11 @@ export const genToken = (id, email) => {
 
 export const verifyUserWithCookieJWT = (req, res, next) => {
   try {
-    verify(req.cookies['jwt']);
+    verify(req.cookies['jwt'], process.env.TOKEN_SECRET);
+    success('token verified');
   } catch (err) {
     console.log("Error verifying cookie");
+    error('token not verified');
+    next(e);
   }
-}
+};
