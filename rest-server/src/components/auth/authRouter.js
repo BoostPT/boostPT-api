@@ -2,7 +2,7 @@ import express from 'express';
 import validate from 'express-validation';
 import passport from 'passport';
 import formValidation from '../../middleware/validation/auth-req-validation';
-import { loginController } from './authController';
+import { signUpController, loginController } from './authController';
 import '../../middleware/validation/passport';
 
 const router = express.Router();

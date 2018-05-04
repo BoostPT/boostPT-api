@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import helmet from 'helmet';
+import cookieParser from 'cookie-parser';
 
 import router from '../../routes';
 
@@ -15,7 +16,7 @@ const middleWare = [
     allowedHeaders: 'Content-Type, authorization',
     methods: ['GET, POST, PUT, DELETE', 'OPTIONS'],
   }),
-  express.cookieParser()
+  cookieParser()
 ];
 
 restServer.use(...middleWare);
