@@ -4,7 +4,7 @@ export const signUpHelper = `
     VALUES
       ($1, $2, $3, $4)
     RETURNING
-      id, username
+      id, username, email, isTrainer
 `;
 
 export const loginHelper = `

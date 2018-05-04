@@ -50,7 +50,7 @@ export const createUserTable = async () => {
       (
       id SERIAL,
       email VARCHAR(255) UNIQUE NOT NULL,
-      username VARCHAR(255) NOT NULL,
+      username VARCHAR(255) UNIQUE NOT NULL,
       password VARCHAR(255) NOT NULL,
       isTrainer BOOLEAN NOT NULL,
       CONSTRAINT users_pk 

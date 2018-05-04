@@ -16,10 +16,15 @@ const middleWare = [
     allowedHeaders: 'Content-Type, authorization',
     methods: ['GET, POST, PUT, DELETE', 'OPTIONS'],
   }),
-  cookieParser()
+  cookieParser(process.env.TOKEN_SECRET)
 ];
 
 restServer.use(...middleWare);
+
+if (process.env.DEBUG === 'TRUE') {
+  const morgan = require('morgan');
+  restServer.use(morgan('dev'));
+}
 
 restServer.use('/api', router);
 

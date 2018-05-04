@@ -32,10 +32,18 @@ export const signUpController = async (req, res) => {
     // rows[0].token = token;
     res.cookie('jwt', token, cookieOptions);
     // return res.status(200).append('authorization', JSON.stringify(token)).send(rows[0]);
-    return res.status(200).send();
+    return res.status(200).send(rows[0]);
   } catch (err) {
+    let errMessage;
     error('signUpController - error= ', err);
-    throw new Error(err);
+    if (err.message.includes('email')) {
+      // duplicate key value violates unique constraint "users_email_key"
+      errMessage = 'Email already exists';
+    } else if (err.message.includes('username')) {
+      // duplicate key value violates unique constraint "users_username_key"
+      errMessage = 'Username already exists';
+    }
+    return res.status(409).send(errMessage);
   }
 };
 
@@ -48,7 +56,7 @@ export const loginController = async (req, res) => {
     const token = await genToken(id, email);
     res.cookie('jwt', token, cookieOptions);
     // return res.status(200).append('Successful Auth', JSON.stringify(token)).send(rows[0]);
-    return res.status(200).send();
+    return res.status(200).send(rows[0]);
   } catch (err) {
     console.log('loginController - error= ', err);
   }
