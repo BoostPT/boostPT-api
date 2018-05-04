@@ -7,7 +7,7 @@
     "start": "nodemon bin/entry.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "buildEnv": "node bin/buildEnv.js"
+    "buildEnv": "node bin/entry.js"
   },
   "jest": {
     "collectCoverage": true,
@@ -26,9 +26,11 @@
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
+    "express-validation": "^1.0.2",
     "helmet": "^3.9.0",
     "jest": "^22.0.4",
     "joi": "^13.1.0",
@@ -41,7 +43,8 @@
   "devDependencies": {
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "babel-register": "^6.26.0"
+    "babel-register": "^6.26.0",
+    "morgan": "^1.9.0"
   },
   "bin": {
     "rest-server": "entry.js"
