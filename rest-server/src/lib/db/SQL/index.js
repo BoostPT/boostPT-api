@@ -74,3 +74,23 @@ export const dropUserTable = async () => {
     error('error dropping users table ', err);
   }
 };
+
+export const addUserDummyData = async () => {
+  try {
+    await db.query(
+      `INSERT INTO users (email, username, password, istrainer) VALUES ('${'gus@cheesemail.com'}', '${'gus'}', '${'1234'}', '${'true'}')`
+    );
+    success('added Gus as trainer');
+    try {
+      await db.query(
+        `INSERT INTO users (email, username, password, istrainer) VALUES ('${'aaron@gmail.com'}', '${'Aaron Melendez'}', '${'1234'}', '${'false'}')`
+      );
+      success('added Aaron as an athlete');
+    } catch (err) {
+      error('error adding dummy user', err);
+    }
+  } catch (err) {
+    error('error adding dummy user', err);
+  }
+}
+

@@ -3,6 +3,7 @@ import {
   createUserTable,
   dropDatabase,
   dropUserTable,
+  addUserDummyData,
   useDatabase,
 } from '../../lib/db/SQL';
 
@@ -11,6 +12,7 @@ const setup = async () => {
   await dropUserTable();
   await createDatabase();
   await createUserTable();
+  await addUserDummyData();
   process.exit();
 }
 
