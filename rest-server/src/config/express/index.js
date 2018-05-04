@@ -14,7 +14,8 @@ const middleWare = [
   cors({
     allowedHeaders: 'Content-Type, authorization',
     methods: ['GET, POST, PUT, DELETE', 'OPTIONS'],
-  })
+  }),
+  express.cookieParser()
 ];
 
 restServer.use(...middleWare);
