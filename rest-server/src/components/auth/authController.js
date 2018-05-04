@@ -49,7 +49,7 @@ export const signUpController = async (req, res) => {
 
 export const loginController = async (req, res) => {
   try {
-    const { rows } = await loginQuery({email});
+    const { rows } = await loginQuery(req.body);
     delete rows[0].password;
     const { id, email } = rows[0];
     console.log('loginController - successfully retrieved data ', rows[0]);
