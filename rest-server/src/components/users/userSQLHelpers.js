@@ -13,3 +13,6 @@ export const fetchUserHelper = `
   WHERE
     id=$1
 `;
+
+export const fetchAllClientNonUserHelper = 
+`SELECT id, trainer_id, client_name FROM trainerClientNonUser WHERE trainer_id=$1`;

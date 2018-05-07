@@ -1,4 +1,5 @@
 import { globalController } from '../../lib/utils/queryHelpers';
 import { userQuery } from './userQueries';
+import { fetchClientNonUserQuery } from './userQueries';
 
-export const userController = globalController(userQuery , 'userController');
+export const fetchNonUserClientsController = globalController(fetchClientNonUserQuery, 'nonUserClientsController');

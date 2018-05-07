@@ -11,6 +11,10 @@ import {
   dropExerciseTable,
   dropUsersWorkoutsTable,
   dropExerciseWorkoutTable,
+  addUserDummyData,
+  dropTrainerClientNonUserTable,
+  createTrainerClientNonUserTable,
+  addTrainerClientNonUserDummyData,
   useDatabase,
 } from '../../lib/db/SQL';
 
@@ -32,7 +36,12 @@ const setup = async () => {
   await createExerciseTable();
   await createUsersWorkoutsTable();
   await createExerciseWorkoutTable();
+  await dropTrainerClientNonUserTable();
+  await createDatabase();
+  await createUserTable();
+  await createTrainerClientNonUserTable();
   await addUserDummyData();
+  await addTrainerClientNonUserDummyData();
   process.exit();
 };
 

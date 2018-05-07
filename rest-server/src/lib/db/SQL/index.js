@@ -158,6 +158,35 @@ export const dropExerciseTable = async () => {
   }
 };
 
+export const createTrainerClientNonUserTable = async () => {
+  try {
+    await db.query(
+      `CREATE TABLE IF NOT EXISTS trainerClientNonUser
+      (
+        id SERIAL,
+        trainer_id INT NOT NULL, 
+        client_name VARCHAR(255) NOT NULL
+      )`
+    );
+    success('successfully created trainerClientNonUserTable');
+  } catch (err) {
+    error('error creating trainerClientNonUserTable', err);
+  }
+};
+
+export const dropTrainerClientNonUserTable = async () => {
+  try {
+    await db.query(
+      `DROP TABLE IF EXISTS trainerClientNonUser`
+    );
+    success('successfully dropped trainerClientNonUserTable');
+  } catch (err) {
+    error('error dropping trainerClientNonUserTable');
+  }
+}
+
+export const addUserDummyData = async () => {
+
 // Users Workouts Join Table
 
 export const createUsersWorkoutsTable = async () => {
@@ -230,3 +259,22 @@ export const dropExerciseWorkoutTable = async () => {
     error('error dropping exerciseWorkout table ', err);
   }
 };
+
+export const addTrainerClientNonUserDummyData = async () => {
+  try {
+    await db.query(
+      `INSERT INTO trainerClientNonUser (trainer_id, client_name) 
+      VALUES 
+      ('${1}', '${'David_Johnson'}'),
+      ('${1}', '${'Pete_Matthews'}'),
+      ('${1}', '${'Sally_Fuller'}'),
+      ('${1}', '${'Phillip_Phillips'}'),
+      ('${1}', '${'John_Smith'}'),
+      ('${1}', '${'James_Johnson'}')`
+    );
+    success('successfully seeded trainerClientNonUser table');
+  } catch (err) {
+    error('error adding dummy non user client', err);
+  }
+}
+
