@@ -6,6 +6,9 @@ import {
 import {
   fetchAllClientNonUserHelper, 
 } from './userSQLHelpers';
+import {
+  addClientNonUserHelper
+} from './userSQLHelpers';
 
 // export const userQuery = async (payload, url) => {
 //   if (url === '/') {
@@ -14,5 +17,9 @@ import {
 // };
 
 export const fetchClientNonUserQuery = async (payload) => {
-  return await globalQueryHelper(payload, fetchAllClientNonUserHelper, 'nonUserClientsController', ['trainer_id']);
+  return await globalQueryHelper(payload, fetchAllClientNonUserHelper, 'fetchClientNonUserController', ['trainer_id']);
+}
+
+export const addClientNonUserQuery = async (payload) => {
+  return await globalQueryHelper(payload, addClientNonUserHelper, 'addClientNonUserController', ['client_name', 'trainer_id']);
 }

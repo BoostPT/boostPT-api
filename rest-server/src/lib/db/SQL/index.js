@@ -165,7 +165,7 @@ export const createTrainerClientNonUserTable = async () => {
       (
         id SERIAL,
         trainer_id INT NOT NULL, 
-        client_name VARCHAR(255) NOT NULL
+        client_name VARCHAR(255) UNIQUE NOT NULL
       )`
     );
     success('successfully created trainerClientNonUserTable');
