@@ -1,4 +1,4 @@
-import { globalQueryHelper } from '../../lib/utils/queryHelpers.js';
+import { globalQueryHelper } from '../../lib/utils/queryHelpers';
 import {
   fetchAllUserHelper,
   fetchUserHelper

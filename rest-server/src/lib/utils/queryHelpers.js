@@ -38,7 +38,7 @@ export const globalQueryHelper = async (payload, queryString, name, columns=[]) 
       values: queryPayloadOrganizer(payload, columns),
     };
     const data = db.query(query);
-    success(`${name} - successfully retrived data ${JSON.stringify(data)}`);
+    success(`${name} - successfully retrieved data ${JSON.stringify(data)}`);
     return data;
   } catch (err) {
     error(`${name} - error= ', ${err}`);
@@ -63,7 +63,7 @@ export const globalController = (query, name) => {
     }
     try {
       const { rows } = await query(payload, url);
-      success(`${name} - sucessfully retrieved data ${JSON.stringify(rows)}`);
+      success(`${name} - successfully retrieved data ${JSON.stringify(rows)}`);
       return res.status(200).send(rows);
     } catch (err) {
       error(`${name} - error= ${err}`);
