@@ -1,15 +1,16 @@
 import express from 'express';
 
 import {
-  workoutController
+  workoutController,
+  addWorkoutController
 } from './workoutControllers';
 
 const router = express.Router();
 
-router.route('/')
+router.route('/:user_id')
   .get(workoutController);
 
 router.route('/addWorkout')
-  .post(workoutController);
+  .post(addWorkoutController);
 
 export default router;

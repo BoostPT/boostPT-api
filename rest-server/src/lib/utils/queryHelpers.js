@@ -37,7 +37,7 @@ export const globalQueryHelper = async (payload, queryString, name, columns=[]) 
       text: queryString,
       values: queryPayloadOrganizer(payload, columns),
     };
-    const data = db.query(query);
+    const data = await db.query(query);
     success(`${name} - successfully retrieved data ${JSON.stringify(data)}`);
     return data;
   } catch (err) {
