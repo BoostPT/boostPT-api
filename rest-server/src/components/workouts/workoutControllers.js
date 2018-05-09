@@ -22,15 +22,16 @@ const addExercisesAndJoinTable = async (exerciseForms, workoutId) => {
 
     let exercisePayload = {
       name: exerciseForms[i].name,
-      description: exerciseForms[i].description,
       type: 0 // type: Warm-up
     };
+
+    if (exerciseForms[i]['description']) exercisePayload.description = exerciseForms[i]['description'];
 
     switch (exerciseForms[i].type) {
       case 'Strength':
         exercisePayload.type = 1;
-        if (exerciseForms[i]['Reps']) exercisePayload.reps = exerciseForms[i]['Reps'];
-        if (exerciseForms[i]['Sets']) exercisePayload.sets = exerciseForms[i]['Sets'];
+        if (exerciseForms[i]['Reps']) exercisePayload.reps = parseInt(exerciseForms[i]['Reps']);
+        if (exerciseForms[i]['Sets']) exercisePayload.sets = parseInt(exerciseForms[i]['Sets']);
         break;
       case 'Cardio':
         exercisePayload.type = 2;
@@ -44,7 +45,7 @@ const addExercisesAndJoinTable = async (exerciseForms, workoutId) => {
     }
 
     try {
-      const exercise = await globalQueryHelper(exercisePayload, addExerciseHelper(exercisePayload), 'addExerciseHelper', []);
+      const exercise = await globalQueryHelper(exercisePayload, addExerciseHelper(Object.keys(exercisePayload)), 'addExerciseHelper', Object.keys(exercisePayload));
       const exerciseId = exercise.rows[0].id;
 
       const exerciseWorkoutPayload = {
@@ -73,7 +74,7 @@ export const addWorkoutController = async (req, res) => {
 
     await globalQueryHelper(userWorkOutPayload, addUsersWorkoutEntryHelper, 'addUsersWorkoutEntryHelper', ['userId', 'workoutId']);
 
-    addExercisesAndJoinTable(req.body.exerciseForms, workoutId);
+    await addExercisesAndJoinTable(req.body.exerciseForms, workoutId);
 
     success(`addWorkoutController - successfully inserted workout, exercises, and join tables`);
     return res.status(200).send()

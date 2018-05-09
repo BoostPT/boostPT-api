@@ -130,7 +130,7 @@ export const createExerciseTable = async () => {
       id SERIAL,
       name VARCHAR(100) NOT NULL,
       description VARCHAR(255),
-      type INT,
+      type INT NOT NULL,
       reps INT,
       sets INT,
       distance VARCHAR(100),

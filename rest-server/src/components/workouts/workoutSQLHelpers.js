@@ -16,21 +16,27 @@ export const addUsersWorkoutEntryHelper = `
     id, user_id, workout_id;
 `;
 
-export const addExerciseHelper = (exercisePayload) => {
+export const addExerciseHelper = (keys) => {
   // Key options: (name, description, type, reps, sets, distance, pace, goaltime)
 
-  const keysInParens = `(${Object.keys(exercisePayload).join(', ')})`;
+  const keysInParens = `(${keys.join(', ')})`;
 
-  const valuesInParens = `(${Object.values(exercisePayload)
-                            .map(value => JSON.stringify(value))
-                            .join(', ')
-                            .replace(/"/g,"'")})`; // double quotes cause an error in postgres
+  // const valuesInParens = `(${Object.values(exercisePayload)
+  //                           .map(value => JSON.stringify(value))
+  //                           .join(', ')
+  //                           .replace(/"/g,"'")})`; // double quotes cause an error in postgres
+
+  let valuesStr = '(';
+  for (let i = 1; i <= keys.length; i++) {
+    valuesStr += i < keys.length ? `$${i}, ` : `$${i}`;
+  }
+  valuesStr += ')';
 
   return `
   INSERT INTO
     exercises ${keysInParens}
   VALUES
-    ${valuesInParens}
+    ${valuesStr}
   RETURNING
     id
   `;
