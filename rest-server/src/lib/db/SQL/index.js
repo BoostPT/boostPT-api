@@ -205,7 +205,7 @@ export const createExerciseWorkoutTable = async () => {
         id SERIAL,
         exercise_id INT NOT NULL,
         workout_id INT NOT NULL,
-        orderIndex INT NOT NULL,
+        order_index INT NOT NULL,
         CONSTRAINT exerciseWorkout_pk
           PRIMARY KEY(id),
         CONSTRAINT fk_exerciseWorkout_exercise_id
