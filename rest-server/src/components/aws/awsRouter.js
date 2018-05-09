@@ -7,6 +7,6 @@ import {
 const router = express.Router();
 
 router.route('/s3')
-  .get(awsS3Controller);
+  .post(awsS3Controller);
 
 export default router;
