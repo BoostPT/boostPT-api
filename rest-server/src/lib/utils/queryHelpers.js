@@ -71,3 +71,32 @@ export const globalController = (query, name) => {
     }
   }
 };
+
+export const addExercisesQueryHelper = async (payload, queryString, name) => {
+  /**
+   * @param {Array} payload - array of exercises
+   *
+   * @return {Array} exerciseIds - array of exercise id's from database query
+   */
+
+  let exerciseIds = [];
+  try {
+    await db.query('BEGIN');
+    for (let i = 0; i < payload.length; i++) {
+      const query = {
+        name,
+        text: queryString,
+        values: payload[i]
+      };
+      const { rows } = await db.query(query);
+      exerciseIds.push(rows[0].id);
+    }
+    await db.query('COMMIT');
+    success(`${name} - successfully inserted exercises and retrieved exerciseIds ${exerciseIds}`);
+    return exerciseIds;
+  } catch (err) {
+    await db.query('ROLLBACK');
+    error(`${name} - error= ${err}`);
+    throw new Error(err);
+  }
+};
