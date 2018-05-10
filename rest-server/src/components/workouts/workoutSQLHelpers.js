@@ -34,20 +34,24 @@ export const addExerciseWorkoutEntryHelper = `
     id, exercise_id, workout_id, order_index;
 `;
 
-export const createWorkoutHelper = `
-  INSERT INTO
-    workouts (name, description, type, reps, sets, distance, pace, goaltime)
-  VALUES 
-    ($1, $2, $3, $4, $5, $6, $7, $8)
-  RETURNING 
-    id, name, description, type, reps, sets, distance, pace, goaltime
-`;
-
-export const fetchWorkoutsHelper = `
+export const fetchWorkoutsByUser = `
   SELECT
-    id, name, description, type, reps, sets, distance, pace, goaltime
+    id, name, is_public, created_at
   FROM
     workouts
   WHERE
-    id=$1
+    creator_id=$1
+`;
+
+export const fetchExercisesByWorkout = `
+  SELECT
+    name, description, type, reps, sets, distance, pace, goaltime
+  FROM
+    exercises
+  JOIN
+    exerciseWorkout
+  ON
+    exercises.id = exerciseWorkout.exercise_id
+  WHERE
+    workout_id=$1
 `;
