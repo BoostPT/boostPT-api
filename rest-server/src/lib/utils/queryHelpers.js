@@ -53,9 +53,11 @@ export const globalController = (query, name) => {
    * 
    * @return {Function} returns a promisified controller
    */
+
   return async (req, res) => {
     const { url, method } = req;
     let payload;
+    console.log("this is the body",req.body);
     if (method === 'POST' || method === 'PUT') {
       payload = req.body;
     } else {

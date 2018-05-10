@@ -1,11 +1,10 @@
 import express from 'express';
 
 import {
-  fetchNonUserClientsController
-} from './userControllers';
-
-import {
-  addNonUserClientsController
+  fetchNonUserClientsController,
+  addNonUserClientsController,
+  userController,
+  userPictureEdit
 } from './userControllers';
 
 const router = express.Router();
@@ -15,5 +14,8 @@ router.route('/:trainer_id')
 
 router.route('/addnonuserclient')
   .post(addNonUserClientsController);
+
+router.route('/:userId/picture')
+  .put(userPictureEdit);
 
 export default router;

@@ -4,3 +4,5 @@ import {addClientNonUserQuery} from './userQueries';
 
 export const fetchNonUserClientsController = globalController(fetchClientNonUserQuery, 'nonUserClientsController');
 export const addNonUserClientsController = globalController(addClientNonUserQuery, 'addClientNonUserController');
+export const userPictureEdit = globalController(userQuery, 'userPictureEdit');
+export const userController = globalController(userQuery , 'userController');
