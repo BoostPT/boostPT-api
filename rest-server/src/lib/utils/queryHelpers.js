@@ -59,7 +59,6 @@ export const globalController = (query, name) => {
     const { url, method } = req;
     const splittedUrl = url.split("/");
     let payload;
-
     if (method === 'POST' || method === 'PUT') {
       payload = req.body;
     } else {
