@@ -57,7 +57,7 @@ export const globalController = (query, name) => {
   return async (req, res) => {
     const { url, method } = req;
     let payload;
-    console.log("this is the body",req.body);
+
     if (method === 'POST' || method === 'PUT') {
       payload = req.body;
     } else {
@@ -65,8 +65,12 @@ export const globalController = (query, name) => {
     }
     try {
       const { rows } = await query(payload, url) || {};
-      success(`${name} - successfully retrieved data ${JSON.stringify(rows)}`);
-      return res.status(200).send(rows);
+      success(`${name} - sucessfully retrieved data ${JSON.stringify(rows)}`);
+      if(rows.length === 0){
+        return res.status(200).send(payload);
+      }else{
+        return res.status(200).send(rows);
+      }
     } catch (err) {
       error(`${name} - error= ${err}`);
       return res.status(500).send(err);
