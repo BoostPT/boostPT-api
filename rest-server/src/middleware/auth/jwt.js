@@ -19,9 +19,16 @@ export const genToken = (id, email) => {
   return token;
 };
 
+const cookieExtractor = (req) => {
+  let token = null;
+  if (req && req.cookies) token = req.cookies['jwt'];
+  return token;
+};
+
 export const verifyUserWithCookieJWT = (req, res, next) => {
   try {
-    verify(req.cookies['jwt'], process.env.TOKEN_SECRET);
+    const token = cookieExtractor(req);
+    verify(token, process.env.TOKEN_SECRET);
     success('token verified');
   } catch (err) {
     console.log("Error verifying cookie");
