@@ -29,7 +29,7 @@ export const globalQueryHelper = async (payload, queryString, name, columns=[]) 
    * @param {String} name - used as an identifier for development, identifies which query is being executed
    * @param {Array} columns - list of fields for parameterized query
    * 
-   * @return {Object} rows from database query
+   * @return {Object} - rows from database query
    */
   try {
     const query = {
