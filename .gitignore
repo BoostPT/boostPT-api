@@ -1,6 +1,7 @@
 node_modules/
 bundle.js
 config.js
+package-lock.json
 .env
 
 .DS_Store
