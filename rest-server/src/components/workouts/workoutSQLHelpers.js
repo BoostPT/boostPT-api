@@ -41,6 +41,8 @@ export const fetchWorkoutsByUser = `
     workouts
   WHERE
     creator_id=$1
+  ORDER BY
+    id DESC
 `;
 
 export const fetchExercisesByWorkout = `
