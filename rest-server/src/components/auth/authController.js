@@ -44,7 +44,7 @@ export const loginController = async (req, res) => {
 
     // res.cookie('jwt', token, cookieOptions);
     // return res.status(200).append('Successful Auth', JSON.stringify(token)).send(rows[0]);
-    // res.set('Set-Cookie', `jwt=${token}; Expires=${cookieOptions.maxAge}; HttpOnly`);
+    // res.set ('Set-Cookie', `jwt=${token}; Expires=${cookieOptions.maxAge}; HttpOnly`);
     res.set('jwt', token.accessToken);
     res.set("Access-Control-Expose-Headers", "jwt");
     return res.status(200).send(rows[0]);
