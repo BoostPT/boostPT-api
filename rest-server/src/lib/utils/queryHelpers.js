@@ -37,8 +37,8 @@ export const globalQueryHelper = async (payload, queryString, name, columns=[]) 
       text: queryString,
       values: queryPayloadOrganizer(payload, columns),
     };
-    const data = db.query(query);
-    success(`${name} - successfully retrived data ${JSON.stringify(data)}`);
+    const data = await db.query(query);
+    success(`${name} - successfully retrieved data ${JSON.stringify(data)}`);
     return data;
   } catch (err) {
     error(`${name} - error= ', ${err}`);
@@ -63,11 +63,40 @@ export const globalController = (query, name) => {
     }
     try {
       const { rows } = await query(payload, url);
-      success(`${name} - sucessfully retrieved data ${JSON.stringify(rows)}`);
+      success(`${name} - successfully retrieved data ${JSON.stringify(rows)}`);
       return res.status(200).send(rows);
     } catch (err) {
       error(`${name} - error= ${err}`);
       return res.status(500).send(err);
     }
+  }
+};
+
+export const addExercisesQueryHelper = async (payload, queryString, name) => {
+  /**
+   * @param {Array} payload - array of exercises
+   *
+   * @return {Array} exerciseIds - array of exercise id's from database query
+   */
+
+  let exerciseIds = [];
+  try {
+    await db.query('BEGIN');
+    for (let i = 0; i < payload.length; i++) {
+      const query = {
+        name,
+        text: queryString,
+        values: payload[i]
+      };
+      const { rows } = await db.query(query);
+      exerciseIds.push(rows[0].id);
+    }
+    await db.query('COMMIT');
+    success(`${name} - successfully inserted exercises and retrieved exerciseIds ${exerciseIds}`);
+    return exerciseIds;
+  } catch (err) {
+    await db.query('ROLLBACK');
+    error(`${name} - error= ${err}`);
+    throw new Error(err);
   }
 };
