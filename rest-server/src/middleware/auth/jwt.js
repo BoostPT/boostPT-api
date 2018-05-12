@@ -19,20 +19,32 @@ export const genToken = (id, email) => {
   return token;
 };
 
-const cookieExtractor = (req) => {
+const convertCookieToObject = (cookie) => {
+  let result = {};
+  cookie.split('; ').forEach(v => {
+    let k = v.split('=');
+    result[k[0]] = k[1];
+  });
+  return result;
+};
+
+const tokenExtractor = (req) => {
   let token = null;
-  if (req && req.cookies) token = req.cookies['jwt'];
+  if (req && req.headers.authorization) {
+    const cookies = convertCookieToObject(req.headers.authorization);
+    token = cookies['jwt'];
+  }
   return token;
 };
 
-export const verifyUserWithCookieJWT = (req, res, next) => {
+export const verifyUserWithJWT = (req, res, next) => {
   try {
-    const token = cookieExtractor(req);
+    const token = tokenExtractor(req);
     verify(token, process.env.TOKEN_SECRET);
     success('token verified');
+    next();
   } catch (err) {
-    console.log("Error verifying cookie");
     error('token not verified');
-    next(e);
+    next(err);
   }
 };
