@@ -47,7 +47,7 @@ export const fetchWorkoutsByUser = `
 
 export const fetchExercisesByWorkout = `
   SELECT
-    name, description, type, reps, sets, distance, pace, goaltime, order_index
+    exercises.id, name, description, type, reps, sets, distance, pace, goaltime, order_index
   FROM
     exercises
   JOIN
