@@ -2,8 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import helmet from 'helmet';
-import cookieParser from 'cookie-parser';
-import path from 'path';
 import router from '../../routes';
 
 const restServer = express();
@@ -13,10 +11,9 @@ const middleWare = [
   bodyParser.json(),
   bodyParser.urlencoded({ extended: true }),
   cors({
-    allowedHeaders: 'Content-Type, authorization',
+    allowedHeaders: 'Content-Type, Authorization',
     methods: ['GET, POST, PUT, DELETE', 'OPTIONS'],
-  }),
-  cookieParser(process.env.TOKEN_SECRET)
+  })
 ];
 
 restServer.use(...middleWare);
