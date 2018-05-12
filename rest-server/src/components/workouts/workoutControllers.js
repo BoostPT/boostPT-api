@@ -1,7 +1,6 @@
 import { globalController, addExercisesQueryHelper } from '../../lib/utils/queryHelpers';
 import { 
-  workoutsByUserQuery,
-  exercisesByWorkout
+  workoutQuery
 } from './workoutQueries';
 
 import { globalQueryHelper } from "../../lib/utils/queryHelpers";
@@ -17,7 +16,9 @@ import {
   error
 } from '../../lib/log';
 
-export const workoutController = globalController(workoutsByUserQuery, 'workoutController');
+// export const workoutController = globalController(workoutsByUserQuery, 'workoutController');
+
+export const workoutController = globalController(workoutQuery, 'workoutController');
 
 const addExercisesAndJoinTable = async (exerciseForms, workoutId) => {
   let exercisesPayload = [];
