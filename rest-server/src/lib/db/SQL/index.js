@@ -186,6 +186,8 @@ export const dropTrainerClientNonUserTable = async () => {
 }
 
 export const addUserDummyData = async () => {
+  
+}
 
 // Users Workouts Join Table
 

@@ -11,7 +11,6 @@ import {
   dropExerciseTable,
   dropUsersWorkoutsTable,
   dropExerciseWorkoutTable,
-  addUserDummyData,
   dropTrainerClientNonUserTable,
   createTrainerClientNonUserTable,
   addTrainerClientNonUserDummyData,
