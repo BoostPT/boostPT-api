@@ -36,26 +36,34 @@ export const addExerciseWorkoutEntryHelper = `
 
 export const fetchWorkoutsByUser = `
   SELECT
-    id, name, is_public, created_at
+    w.id, w.name, w.is_public, w.created_at, sw.id as star
   FROM
-    workouts
+    workouts as w
+  JOIN
+    starWorkout as sw
+  ON
+    w.id=sw.workout_id
   WHERE
-    creator_id=$1
+    w.creator_id=$1
   ORDER BY
-    id DESC
+    w.id DESC
 `;
 
 export const fetchExercisesByWorkout = `
   SELECT
-    exercises.id, name, description, type, reps, sets, distance, pace, goaltime, order_index
+    e.id, e.name, e.description, e.type, e.reps, e.sets, e.distance, e.pace, e.goaltime, ew.order_index, se.id as star
   FROM
-    exercises
+    exercises as e
   JOIN
-    exerciseWorkout
+    exerciseWorkout as ew
   ON
-    exercises.id = exerciseWorkout.exercise_id
+    e.id = ew.exercise_id
+  JOIN
+    starExercise as se
+  ON
+    e.id = se.exercise_id
   WHERE
-    workout_id=$1
+    e.workout_id=$1
 `;
 
 export const fetchExerciseIdsByWorkout = `
