@@ -16,7 +16,8 @@ import {
   dropExerciseWorkoutTable,
   dropStarWorkoutTable,
   dropStarExerciseTable,
-  dropTrainerClientNonUserTable
+  dropTrainerClientNonUserTable,
+  useDatabase,
 } from '../../lib/db/SQL';
 
 // Temp until we make more seed data files
