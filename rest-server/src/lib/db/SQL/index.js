@@ -114,7 +114,7 @@ export const dropWorkoutTable = async () => {
   }
 };
 
-// Exercises Tables
+// Exercises Table
 
 export const createExerciseTable = async () => {
   // type
@@ -158,6 +158,8 @@ export const dropExerciseTable = async () => {
   }
 };
 
+// Trainer Client Non-user Table
+
 export const createTrainerClientNonUserTable = async () => {
   try {
     await db.query(
@@ -183,10 +185,6 @@ export const dropTrainerClientNonUserTable = async () => {
   } catch (err) {
     error('error dropping trainerClientNonUserTable');
   }
-}
-
-export const addUserDummyData = async () => {
-  
 }
 
 // Users Workouts Join Table
@@ -261,22 +259,4 @@ export const dropExerciseWorkoutTable = async () => {
     error('error dropping exerciseWorkout table ', err);
   }
 };
-
-export const addTrainerClientNonUserDummyData = async () => {
-  try {
-    await db.query(
-      `INSERT INTO trainerClientNonUser (trainer_id, client_name) 
-      VALUES 
-      ('${1}', '${'David_Johnson'}'),
-      ('${1}', '${'Pete_Matthews'}'),
-      ('${1}', '${'Sally_Fuller'}'),
-      ('${1}', '${'Phillip_Phillips'}'),
-      ('${1}', '${'John_Smith'}'),
-      ('${1}', '${'James_Johnson'}')`
-    );
-    success('successfully seeded trainerClientNonUser table');
-  } catch (err) {
-    error('error adding dummy non user client', err);
-  }
-}
 

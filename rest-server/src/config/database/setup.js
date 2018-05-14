@@ -12,14 +12,14 @@ import {
   dropUsersWorkoutsTable,
   dropExerciseWorkoutTable,
   dropTrainerClientNonUserTable,
-  createTrainerClientNonUserTable,
-  addTrainerClientNonUserDummyData,
+  createTrainerClientNonUserTable
   useDatabase,
 } from '../../lib/db/SQL';
 
 // Temp until we make more seed data files
 import {
-  addUserDummyData
+  addUserDummyData,
+  addTrainerClientNonUserDummyData
 } from '../../lib/db/SQL/seedDbHelpers';
 
 const setup = async () => {
