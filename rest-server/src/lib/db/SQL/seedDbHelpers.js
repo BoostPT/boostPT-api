@@ -35,3 +35,21 @@ export const addWorkoutDummyData = async () => {
     error('error adding dummy user', err);
   }
 };
+
+export const addTrainerClientNonUserDummyData = async () => {
+  try {
+    await db.query(
+      `INSERT INTO trainerClientNonUser (trainer_id, client_name) 
+      VALUES 
+      ('${1}', '${'David_Johnson'}'),
+      ('${1}', '${'Pete_Matthews'}'),
+      ('${1}', '${'Sally_Fuller'}'),
+      ('${1}', '${'Phillip_Phillips'}'),
+      ('${1}', '${'John_Smith'}'),
+      ('${1}', '${'James_Johnson'}')`
+    );
+    success('successfully seeded trainerClientNonUser table');
+  } catch (err) {
+    error('error adding dummy non user client', err);
+  }
+};
