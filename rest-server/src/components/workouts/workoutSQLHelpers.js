@@ -40,6 +40,10 @@ export const fetchWorkoutsByUser = `
   FROM
     workouts as w
   FULL OUTER JOIN
+    w.id, w.name, w.is_public, w.created_at, sw.id as star
+  FROM
+    workouts as w
+  JOIN
     starWorkout as sw
   ON
     w.id=sw.workout_id
@@ -93,8 +97,12 @@ export const deleteFromExerciseWorkout = `
   DELETE
   FROM
     exerciseWorkout
+  JOIN
+    exerciseWorkout as ew
+  ON
+    e.id = ew.exercise_id
   WHERE
-    workout_id=$1
+    e.workout_id=$1
 `;
 
 export const deleteFromUsersWorkouts = `
