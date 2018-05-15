@@ -8,7 +8,7 @@ server.listen(process.env.PORT, function() {
 });
 
 io.on('connection', (socket) => {
-	socket.on('message', (data) => {
-		io.emit('servermessage', data );
-	});
+  socket.on('message', (data) => {
+    io.emit('servermessage', data );
+  });
 });

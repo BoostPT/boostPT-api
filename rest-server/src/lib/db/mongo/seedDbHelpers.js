@@ -25,6 +25,3 @@ export const addMessagesDummyData = async () => {
     error('error seeding messages table');
   }
 }
-
-
-
