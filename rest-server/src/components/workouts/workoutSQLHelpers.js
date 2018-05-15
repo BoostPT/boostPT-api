@@ -40,10 +40,6 @@ export const fetchWorkoutsByUser = `
   FROM
     workouts as w
   FULL OUTER JOIN
-    w.id, w.name, w.is_public, w.created_at, sw.id as star
-  FROM
-    workouts as w
-  FULL OUTER JOIN
     starWorkout as sw
   ON
     w.id=sw.workout_id
