@@ -2,22 +2,25 @@ import express from 'express';
 
 import {
   workoutController,
-  addWorkoutController
+  addWorkoutController,
+  starWorkoutController
 } from './workoutControllers';
 
 const router = express.Router();
 
-
 router.route('/addWorkout')
-.post(addWorkoutController);
+  .post(addWorkoutController);
 
 router.route('/user/:user_id')
-.get(workoutController);
+  .get(workoutController);
 
 router.route('/exercises/:workout_id')
   .get(workoutController);
 
 router.route('/delete/:workout_id')
   .delete(workoutController);
+
+router.route('/starworkout')
+  .post(starWorkoutController);
 
 export default router;

@@ -9,7 +9,7 @@ import { verifyUserWithJWT } from '../middleware/auth/jwt';
 const router = express.Router();
 
 router.use('/auth', authRouter);
-router.use('/users', userRouter);
+router.use('/users', verifyUserWithJWT, userRouter);
 router.use('/aws', awsRouter);
 router.use('/workouts', verifyUserWithJWT, workoutRouter);
 

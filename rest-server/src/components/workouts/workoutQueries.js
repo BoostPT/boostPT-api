@@ -11,10 +11,6 @@ import {
   deleteFromExercises
 } from './workoutSQLHelpers';
 
-// export const workoutQuery = async (payload, url) => {
-//   return await globalQueryHelper(payload, fetchUserWorkoutsHelper, 'fetchUserWorkoutsHelper', []);
-// }
-
 export const workoutQuery = async (payload, url) => {
   if (url.slice(0,10) === '/exercises') {
     try {
