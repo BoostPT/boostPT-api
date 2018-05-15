@@ -8,15 +8,16 @@ import {
   addWorkoutHelper,
   addUsersWorkoutEntryHelper,
   addExerciseHelper,
-  addExerciseWorkoutEntryHelper
+  addExerciseWorkoutEntryHelper,
+  starWorkoutExistance,
+  starWorkout,
+  deleteStarWorkout
 } from './workoutSQLHelpers';
 
 import {
   success,
   error
 } from '../../lib/log';
-
-// export const workoutController = globalController(workoutsByUserQuery, 'workoutController');
 
 export const workoutController = globalController(workoutQuery, 'workoutController');
 
@@ -86,4 +87,25 @@ export const addWorkoutController = async (req, res) => {
     error(`addWorkoutController - error= ${err}`);
     return res.status(500).send(err);
   }
+};
+
+export const starWorkoutController = async (req, res) => {
+
+  try {
+    const star = await globalQueryHelper(req.body, starWorkoutExistance, 'starWorkoutExistance', ['workout_id', 'user_id']);
+
+    if (star.rows[0].exists) {
+      await globalQueryHelper(req.body, deleteStarWorkout, 'deleteStarWorkout', ['workout_id', 'user_id']);
+      success(`starWorkoutController - successfully deleted workout star`);
+    } else {
+      await globalQueryHelper(req.body, starWorkout, 'starWorkout', ['workout_id', 'user_id']);
+      success(`starWorkoutController - successfully starred workout`);
+    }
+    return res.status(200).send()
+  }
+  catch(err) {
+    error(`starWorkoutController - error= ${err}`);
+    return res.status(500).send(err);
+  }
+
 };
