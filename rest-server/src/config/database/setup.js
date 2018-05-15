@@ -22,6 +22,11 @@ import {
   addUserDummyData
 } from '../../lib/db/SQL/seedDbHelpers';
 
+import {
+  addMessagesDummyData,
+  dropMessagesCollection
+} from '../../lib/db/mongo/seedDbHelpers';
+
 const setup = async () => {
   await dropDatabase();
   await dropUserTable();
@@ -41,6 +46,8 @@ const setup = async () => {
   await createTrainerClientNonUserTable();
   await addUserDummyData();
   await addTrainerClientNonUserDummyData();
+  await dropMessagesCollection();
+  await addMessagesDummyData();
   process.exit();
 };
 
