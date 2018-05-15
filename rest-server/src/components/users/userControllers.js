@@ -8,3 +8,4 @@ export const fetchNonUserClientsController = globalController(fetchClientNonUser
 export const addNonUserClientsController = globalController(addClientNonUserQuery, 'addClientNonUserController');
 export const userPictureEdit = globalController(userAddPictureQuery, 'userPictureEdit');
 export const userController = globalController(userQuery , 'userController');
+export const fetchAllTrainers = globalController(fetchAllTrainersQuery, 'fetchAllTrainersQuery');

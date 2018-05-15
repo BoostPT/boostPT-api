@@ -17,5 +17,8 @@ router.route('/addnonuserclient')
 
 router.route('/:userId/picture')
   .put(userPictureEdit);
+  
+router.route('/trainers')
+  .get(fetchAllTrainers);
 
 export default router;
