@@ -4,7 +4,7 @@ import {
   workoutController,
   addWorkoutController,
   starWorkoutController,
-  starExerciseController
+  starExerciseController,
 } from './workoutControllers';
 
 const router = express.Router();
