@@ -20,8 +20,24 @@ const envBuild = {
     'AWS_DATABASE=',
     'AWS_PASSWORD=',
     'AWS_PORT=',
+    'NOSQL_LOCAL_USER=userAdmin',
+    'NOSQL_LOCAL_HOST=localhost',
+    'NOSQL_LOCAL_DATABASE=boostpt',
+    'NOSQL_LOCAL_PASSWORD=',
+    'NOSQL_LOCAL_PORT=27017',
+    'NOSQL_AWS_USER=userAdmin',
+    'NOSQL_AWS_HOST=localhost',
+    'NOSQL_AWS_DATABASE=boostpt',
+    'NOSQL_AWS_PASSWORD=',
+    'NOSQL_AWS_PORT=27017',
     'SALT_ROUNDS=10',
     'TOKEN_SECRET=fitnessguru'
+  ],
+  'socket-server': [
+    'NODE_ENV=test',
+    'DEBUG=TRUE',
+    'HOST=http://localhost',
+    'PORT=5000',
   ]
 };
 

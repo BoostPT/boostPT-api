@@ -1,6 +1,7 @@
 import http from 'http';
 import { success } from './lib/log';
 import './config/database';
+import './config/mongoDB';
 import app from './config/express';
 
 const server = http.createServer(app);
