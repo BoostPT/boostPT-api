@@ -36,7 +36,7 @@ export const addExerciseWorkoutEntryHelper = `
 
 export const fetchWorkoutsByUser = `
   SELECT
-    w.id, w.name, w.is_public, w.created_at, sw.id as star
+    w.id, w.name, w.is_public, w.created_at, sw.id IS NOT NULL as star
   FROM
     workouts as w
   FULL OUTER JOIN
@@ -51,7 +51,7 @@ export const fetchWorkoutsByUser = `
 
 export const fetchExercisesByWorkout = `
   SELECT
-    e.id, e.name, e.description, e.type, e.reps, e.sets, e.distance, e.pace, e.goaltime, ew.order_index, se.id as star
+    e.id, e.name, e.description, e.type, e.reps, e.sets, e.distance, e.pace, e.goaltime, ew.order_index, se.id IS NOT NULL as star
   FROM
     exercises as e
   JOIN
