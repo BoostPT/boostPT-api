@@ -57,3 +57,41 @@ export const fetchExercisesByWorkout = `
   WHERE
     workout_id=$1
 `;
+
+export const deleteWorkouts = `
+  DELETE
+  FROM 
+    workouts
+  WHERE 
+    id=$1
+`;
+
+export const deleteExercises = `
+  DELETE
+  FROM
+    exerciseWorkout
+  WHERE
+    workout_id=$1
+`;
+
+// DELETE
+//   exercises, exerciseWorkout
+// FROM 
+//   exercises 
+// INNER JOIN 
+//   exerciseWorkout  
+// WHERE 
+//   exercises.id=exerciseWorkout.workout_id
+// AND 
+//   exerciseWorkout.workout_id=$1
+
+// DELETE 
+//   a.*, b.*
+// FROM 
+//   exercises AS a
+// LEFT JOIN 
+//   exerciseWorkout AS b 
+// ON 
+//   a.id = b.exercise_id
+// WHERE 
+//   b.workout_id = $1

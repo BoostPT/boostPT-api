@@ -3,7 +3,9 @@ import {
   fetchUserWorkoutsHelper,
   createWorkoutHelper,
   fetchExercisesByWorkout,
-  fetchWorkoutsByUser
+  fetchWorkoutsByUser,
+  deleteWorkouts,
+  deleteExercises
 } from './workoutSQLHelpers';
 
 // export const workoutQuery = async (payload, url) => {
@@ -15,7 +17,8 @@ export const workoutQuery = async (payload, url) => {
     return await globalQueryHelper(payload, fetchExercisesByWorkout, 'fetchExercisesByWorkout', ['workout_id']);
   } else if (url.slice(0,5) === '/user') {
     return await globalQueryHelper(payload, fetchWorkoutsByUser, 'fetchWorkoutsByUser', ['user_id']);
-  } else if (url.slice(0, 9) === '/workouts') {
-    console.log('made it to workout queries')
+  } else if (url.slice(0, 7) === '/delete') {
+    await globalQueryHelper(payload, deleteExercises, 'deleteExercises', ['workout_id']);
+    await globalQueryHelper(payload, deleteWorkouts, 'deleteWorkouts', ['workout_id']);
   }
 };
