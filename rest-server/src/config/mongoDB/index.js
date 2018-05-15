@@ -16,7 +16,7 @@ const options = {
 }
 
 mongoose.connect(`mongodb://${options.auth.user}:${options.auth.password}@${options.authSource}:${options.port}/boostpt`);
-var db = mongoose.connection;
+let db = mongoose.connection;
 db.on('error', (err) => {
   error('error in mongoDB', err);
 });
