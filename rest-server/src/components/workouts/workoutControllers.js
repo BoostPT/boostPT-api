@@ -14,7 +14,7 @@ import {
   deleteStarWorkout,
   starExerciseExistance,
   starExercise,
-  deleteStarExercise,
+  deleteStarExercise
 } from './workoutSQLHelpers';
 
 import {
