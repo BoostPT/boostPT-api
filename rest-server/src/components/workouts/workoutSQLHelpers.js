@@ -64,6 +64,8 @@ export const fetchExercisesByWorkout = `
     e.id = se.exercise_id
   WHERE
     ew.workout_id=$1
+  ORDER BY
+    ew.order_index
 `;
 
 export const starWorkoutExistance = `
