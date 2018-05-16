@@ -17,4 +17,7 @@ router.route('/user/:user_id')
 router.route('/exercises/:workout_id')
   .get(workoutController);
 
+router.route('/delete/:workout_id')
+  .delete(workoutController);
+
 export default router;
