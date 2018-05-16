@@ -57,3 +57,27 @@ export const fetchExercisesByWorkout = `
   WHERE
     workout_id=$1
 `;
+
+export const deleteFromWorkouts = `
+  DELETE
+  FROM 
+    workouts
+  WHERE 
+    id=$1
+`;
+
+export const deleteFromExerciseWorkout = `
+  DELETE
+  FROM
+    exerciseWorkout
+  WHERE
+    workout_id=$1
+`;
+
+export const deleteFromUsersWorkouts = `
+  DELETE
+  FROM
+    usersWorkouts
+  WHERE
+    workout_id=$1
+`;
