@@ -32,6 +32,7 @@ export const globalQueryHelper = async (payload, queryString, name, columns=[]) 
    * @return {Object} - rows from database query
    */
   try {
+    //console.log(payload);
     const query = {
       name,
       text: queryString,
@@ -56,6 +57,7 @@ export const globalController = (query, name) => {
 
   return async (req, res) => {
     const { url, method } = req;
+    const splittedUrl = url.split("/");
     let payload;
 
     if (method === 'POST' || method === 'PUT') {
@@ -63,6 +65,11 @@ export const globalController = (query, name) => {
     } else {
       payload = req.params;
     }
+
+    if(splittedUrl[1] === "public"){
+      payload.is_public = true;
+    }
+    
     try {
       const { rows } = await query(payload, url) || {};
       success(`${name} - sucessfully retrieved data ${JSON.stringify(rows)}`);

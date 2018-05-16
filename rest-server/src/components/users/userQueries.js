@@ -24,9 +24,7 @@ export const userQuery = async (payload, url) => {
 };
 
 export const userAddPictureQuery = async (payload, url) => {
-  console.log("inside userQueries*********",url);
   if(url.split('/')[2] === 'picture'){
-    // console.log("inside userQueries*********", )
     return await globalQueryHelper(payload, addUserPictureHelper, 'fetchAllUserHelper', ['userId', 'pictureUrl']);
   }
 };
