@@ -62,7 +62,7 @@ export const globalController = (query, name) => {
       payload = req.params;
     }
     try {
-      const { rows } = await query(payload, url);
+      const { rows } = await query(payload, url) || {};
       success(`${name} - successfully retrieved data ${JSON.stringify(rows)}`);
       return res.status(200).send(rows);
     } catch (err) {
