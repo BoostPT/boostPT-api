@@ -5,21 +5,24 @@ import {
   createExerciseTable,
   createUsersWorkoutsTable,
   createExerciseWorkoutTable,
+  createStarWorkoutTable,
+  createStarExerciseTable,
+  createTrainerClientNonUserTable,
   dropDatabase,
   dropUserTable,
   dropWorkoutTable,
   dropExerciseTable,
   dropUsersWorkoutsTable,
   dropExerciseWorkoutTable,
-  dropTrainerClientNonUserTable,
-  createTrainerClientNonUserTable,
-  addTrainerClientNonUserDummyData,
-  useDatabase,
+  dropStarWorkoutTable,
+  dropStarExerciseTable,
+  dropTrainerClientNonUserTable
 } from '../../lib/db/SQL';
 
 // Temp until we make more seed data files
 import {
-  addUserDummyData
+  addUserDummyData,
+  addTrainerClientNonUserDummyData
 } from '../../lib/db/SQL/seedDbHelpers';
 
 import {
@@ -34,15 +37,19 @@ const setup = async () => {
   await dropExerciseTable();
   await dropExerciseWorkoutTable();
   await dropUsersWorkoutsTable();
+  await dropStarWorkoutTable();
+  await dropStarExerciseTable();
+  await dropTrainerClientNonUserTable();
   await createDatabase();
   await createUserTable();
   await createWorkoutTable();
   await createExerciseTable();
   await createUsersWorkoutsTable();
   await createExerciseWorkoutTable();
-  await dropTrainerClientNonUserTable();
   await createDatabase();
   await createUserTable();
+  await createStarWorkoutTable();
+  await createStarExerciseTable();
   await createTrainerClientNonUserTable();
   await addUserDummyData();
   await addTrainerClientNonUserDummyData();

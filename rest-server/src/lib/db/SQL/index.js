@@ -114,7 +114,7 @@ export const dropWorkoutTable = async () => {
   }
 };
 
-// Exercises Tables
+// Exercises Table
 
 export const createExerciseTable = async () => {
   // type
@@ -158,6 +158,8 @@ export const dropExerciseTable = async () => {
   }
 };
 
+// Trainer Client Non-user Table
+
 export const createTrainerClientNonUserTable = async () => {
   try {
     await db.query(
@@ -185,10 +187,6 @@ export const dropTrainerClientNonUserTable = async () => {
   }
 }
 
-export const addUserDummyData = async () => {
-  
-}
-
 // Users Workouts Join Table
 
 export const createUsersWorkoutsTable = async () => {
@@ -209,7 +207,7 @@ export const createUsersWorkoutsTable = async () => {
       )
       `
     );
-    success('succesfully created usersWorkouts table')
+    success('successfully created usersWorkouts table')
   } catch (err) {
     error('error creating usersWorkouts table ', err);
   }
@@ -262,21 +260,74 @@ export const dropExerciseWorkoutTable = async () => {
   }
 };
 
-export const addTrainerClientNonUserDummyData = async () => {
+// Starred Workouts Join Table
+
+export const createStarWorkoutTable = async () => {
   try {
     await db.query(
-      `INSERT INTO trainerClientNonUser (trainer_id, client_name) 
-      VALUES 
-      ('${1}', '${'David_Johnson'}'),
-      ('${1}', '${'Pete_Matthews'}'),
-      ('${1}', '${'Sally_Fuller'}'),
-      ('${1}', '${'Phillip_Phillips'}'),
-      ('${1}', '${'John_Smith'}'),
-      ('${1}', '${'James_Johnson'}')`
+      `
+      CREATE TABLE IF NOT EXISTS starWorkout
+      (
+        id SERIAL,
+        user_id INT NOT NULL,
+        workout_id INT NOT NULL,
+        CONSTRAINT starWorkout_pk
+          PRIMARY KEY(id),
+        CONSTRAINT fk_starWorkout_user_id
+          FOREIGN KEY(user_id) REFERENCES users(id),
+        CONSTRAINT fk_starWorkout_workout_id
+          FOREIGN KEY(workout_id) REFERENCES workouts(id)
+      )
+      `
     );
-    success('successfully seeded trainerClientNonUser table');
+    success('successfully created starWorkout table')
   } catch (err) {
-    error('error adding dummy non user client', err);
+    error('error creating starWorkout table ', err);
   }
-}
+};
 
+export const dropStarWorkoutTable = async () => {
+  try {
+    await db.query(
+      `DROP TABLE IF EXISTS starWorkout cascade`
+    );
+  } catch (err) {
+    error('error dropping starWorkout table ', err);
+  }
+};
+
+// Starred Exercises Join Table
+
+export const createStarExerciseTable = async () => {
+  try {
+    await db.query(
+      `
+      CREATE TABLE IF NOT EXISTS starExercise
+      (
+        id SERIAL,
+        user_id INT NOT NULL,
+        exercise_id INT NOT NULL,
+        CONSTRAINT starExercise_pk
+          PRIMARY KEY(id),
+        CONSTRAINT fk_starExercise_user_id
+          FOREIGN KEY(user_id) REFERENCES users(id),
+        CONSTRAINT fk_starExercise_exercise_id
+          FOREIGN KEY(exercise_id) REFERENCES exercises(id)
+      )
+      `
+    );
+    success('successfully created starExercise table')
+  } catch (err) {
+    error('error creating starExercise table ', err);
+  }
+};
+
+export const dropStarExerciseTable = async () => {
+  try {
+    await db.query(
+      `DROP TABLE IF EXISTS starExercise cascade`
+    );
+  } catch (err) {
+    error('error dropping starExercise table ', err);
+  }
+};
