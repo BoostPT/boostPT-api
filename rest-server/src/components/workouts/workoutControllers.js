@@ -11,7 +11,10 @@ import {
   addExerciseWorkoutEntryHelper,
   starWorkoutExistance,
   starWorkout,
-  deleteStarWorkout
+  deleteStarWorkout,
+  starExerciseExistance,
+  starExercise,
+  deleteStarExercise
 } from './workoutSQLHelpers';
 
 import {
@@ -105,6 +108,27 @@ export const starWorkoutController = async (req, res) => {
   }
   catch(err) {
     error(`starWorkoutController - error= ${err}`);
+    return res.status(500).send(err);
+  }
+
+};
+
+export const starExerciseController = async (req, res) => {
+
+  try {
+    const star = await globalQueryHelper(req.body, starExerciseExistance, 'starExerciseExistance', ['exercise_id', 'user_id']);
+
+    if (star.rows[0].exists) {
+      await globalQueryHelper(req.body, deleteStarExercise, 'deleteStarExercise', ['exercise_id', 'user_id']);
+      success(`starExerciseController - successfully deleted exercise star`);
+    } else {
+      await globalQueryHelper(req.body, starExercise, 'starExercise', ['exercise_id', 'user_id']);
+      success(`starExerciseController - successfully starred exercise`);
+    }
+    return res.status(200).send()
+  }
+  catch(err) {
+    error(`starExerciseController - error= ${err}`);
     return res.status(500).send(err);
   }
 
