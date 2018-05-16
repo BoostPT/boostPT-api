@@ -58,6 +58,19 @@ export const fetchExercisesByWorkout = `
     workout_id=$1
 `;
 
+export const fetchExerciseIdsByWorkout = `
+  SELECT
+    exercises.id
+  FROM
+    exercises
+  JOIN
+    exerciseWorkout
+  ON
+    exercises.id = exerciseWorkout.exercise_id
+  WHERE
+    workout_id=$1
+`;
+
 export const deleteFromWorkouts = `
   DELETE
   FROM 
@@ -80,4 +93,12 @@ export const deleteFromUsersWorkouts = `
     usersWorkouts
   WHERE
     workout_id=$1
+`;
+
+export const deleteFromExercises = `
+  DELETE
+  FROM
+    exercises
+  WHERE
+    id=$1
 `;
