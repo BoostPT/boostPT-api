@@ -4,11 +4,15 @@ import {
   fetchNonUserClientsController,
   addNonUserClientsController,
   userController,
-  userPictureEdit
+  userPictureEdit,
+  fetchAllTrainers
 } from './userControllers';
 
 const router = express.Router();
 
+router.route('/trainers')
+  .get(fetchAllTrainers);
+  
 router.route('/:trainer_id')
   .get(fetchNonUserClientsController);
 
@@ -17,8 +21,5 @@ router.route('/addnonuserclient')
 
 router.route('/:userId/picture')
   .put(userPictureEdit);
-  
-router.route('/trainers')
-  .get(fetchAllTrainers);
 
 export default router;

@@ -5,7 +5,8 @@ import {
   fetchAllClientNonUserHelper, 
   fetchAllUserHelper,
   fetchUserHelper,
-  addUserPictureHelper
+  addUserPictureHelper,
+  fetchAllTrainersHelper
 } from './userSQLHelpers';
 
 export const fetchClientNonUserQuery = async (payload) => {
