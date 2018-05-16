@@ -32,7 +32,6 @@ export const globalQueryHelper = async (payload, queryString, name, columns=[]) 
    * @return {Object} - rows from database query
    */
   try {
-    //console.log(payload);
     const query = {
       name,
       text: queryString,
