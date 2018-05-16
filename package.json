@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "",
-    "start": "npm-run-all -p start:rest-server",
+    "start": "npm-run-all -p start:rest-server start:socket-server",
     "start:rest-server": "cd rest-server && npm run start",
     "setup": "npm-run-all -s setup:rest-server",
     "setup:rest-server": "cd rest-server && npm install",
