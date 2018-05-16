@@ -3,7 +3,8 @@ import express from 'express';
 import {
   workoutController,
   addWorkoutController,
-  starWorkoutController
+  starWorkoutController,
+  starExerciseController
 } from './workoutControllers';
 
 const router = express.Router();
@@ -22,5 +23,8 @@ router.route('/delete/:workout_id')
 
 router.route('/starworkout')
   .post(starWorkoutController);
+
+router.route('/starexercise')
+  .post(starExerciseController);
 
 export default router;

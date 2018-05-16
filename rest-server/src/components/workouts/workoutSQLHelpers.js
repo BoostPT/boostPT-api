@@ -138,3 +138,31 @@ export const deleteStarWorkout = `
   WHERE
     workout_id=$1 AND user_id=$2
 `;
+
+export const starExerciseExistance = `
+  SELECT EXISTS
+  (
+  SELECT
+    id
+  FROM
+    starExercise
+  WHERE
+    exercise_id=$1 AND user_id=$2
+  )
+`;
+
+export const starExercise = `
+  INSERT INTO
+    starExercise (exercise_id, user_id)
+  VALUES
+    ($1, $2)
+  RETURNING
+    id
+`;
+
+export const deleteStarExercise = `
+  DELETE FROM
+    starExercise
+  WHERE
+    exercise_id=$1 AND user_id=$2
+`;
