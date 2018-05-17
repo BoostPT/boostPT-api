@@ -36,39 +36,49 @@ export const addExerciseWorkoutEntryHelper = `
 
 export const fetchWorkoutsByUser = `
   SELECT
-    id, name, is_public, created_at
+    w.id, w.name, w.is_public, w.created_at, sw.id IS NOT NULL as star
   FROM
-    workouts
+    workouts as w
+  FULL OUTER JOIN
+    starWorkout as sw
+  ON
+    w.id=sw.workout_id
   WHERE
-    creator_id=$1
+    w.creator_id=$1
   ORDER BY
-    id DESC
+    w.id DESC
 `;
 
 export const fetchExercisesByWorkout = `
   SELECT
-    exercises.id, name, description, type, reps, sets, distance, pace, goaltime, order_index
+    e.id, e.name, e.description, e.type, e.reps, e.sets, e.distance, e.pace, e.goaltime, ew.order_index, se.id IS NOT NULL as star
   FROM
-    exercises
+    exercises as e
   JOIN
-    exerciseWorkout
+    exerciseWorkout as ew
   ON
-    exercises.id = exerciseWorkout.exercise_id
+    e.id = ew.exercise_id
+  FULL OUTER JOIN
+    starExercise as se
+  ON
+    e.id = se.exercise_id
   WHERE
-    workout_id=$1
+    ew.workout_id=$1
+  ORDER BY
+    ew.order_index
 `;
 
 export const fetchExerciseIdsByWorkout = `
   SELECT
-    exercises.id
+    e.id
   FROM
-    exercises
+    exercises as e
   JOIN
-    exerciseWorkout
+    exerciseWorkout as ew
   ON
-    exercises.id = exerciseWorkout.exercise_id
+    e.id = ew.exercise_id
   WHERE
-    workout_id=$1
+    ew.workout_id=$1
 `;
 
 export const deleteFromWorkouts = `
@@ -83,8 +93,12 @@ export const deleteFromExerciseWorkout = `
   DELETE
   FROM
     exerciseWorkout
+  JOIN
+    exerciseWorkout as ew
+  ON
+    e.id = ew.exercise_id
   WHERE
-    workout_id=$1
+    e.workout_id=$1
 `;
 
 export const deleteFromUsersWorkouts = `
@@ -101,4 +115,73 @@ export const deleteFromExercises = `
     exercises
   WHERE
     id=$1
+`;
+
+export const starWorkoutExistance = `
+  SELECT EXISTS
+  (
+  SELECT
+    id
+  FROM
+    starWorkout
+  WHERE
+    workout_id=$1 AND user_id=$2
+  )
+`;
+
+export const starWorkout = `
+  INSERT INTO
+    starWorkout (workout_id, user_id)
+  VALUES
+    ($1, $2)
+  RETURNING
+    id
+`;
+
+export const deleteStarWorkout = `
+  DELETE FROM
+    starWorkout
+  WHERE
+    workout_id=$1 AND user_id=$2
+`;
+
+export const starExerciseExistance = `
+  SELECT EXISTS
+  (
+  SELECT
+    id
+  FROM
+    starExercise
+  WHERE
+    exercise_id=$1 AND user_id=$2
+  )
+`;
+
+export const starExercise = `
+  INSERT INTO
+    starExercise (exercise_id, user_id)
+  VALUES
+    ($1, $2)
+  RETURNING
+    id
+`;
+
+export const deleteStarExercise = `
+  DELETE FROM
+    starExercise
+  WHERE
+    exercise_id=$1 AND user_id=$2
+`;
+
+export const getStarredExercisesByUser = `
+  SELECT
+    e.id, e.name, e.description, e.type, e.reps, e.sets, e.distance, e.pace, e.goaltime, se.id IS NOT NULL as star
+  FROM
+    exercises as e
+  FULL OUTER JOIN
+    starExercise as se
+  ON
+    e.id=se.exercise_id
+  WHERE
+    se.user_id=$1
 `;

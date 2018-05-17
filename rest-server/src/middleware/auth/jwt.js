@@ -11,7 +11,7 @@ export const genToken = (id, email) => {
   const token = {};
 
   token.accessToken = sign({
-    exp: Math.floor(Date.now() / 1000) + (60 * 60),
+    exp: Date.now() * 1000 * 60 * 60 * 24 * 7, // 1 week
     email,
     id,
   }, process.env.TOKEN_SECRET);
