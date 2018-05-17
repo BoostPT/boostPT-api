@@ -26,8 +26,16 @@ export const workoutController = globalController(workoutQuery, 'workoutControll
 
 const addExercisesAndJoinTable = async (exerciseForms, workoutId) => {
   let exercisesPayload = [];
+  let existingExercises = [];
   for (let i = 0; i < exerciseForms.length; i++) {
     let type;
+    if (exerciseForms[i].id) {
+      existingExercises.push({
+        id: exerciseForms[i].id,
+        orderIndex: i
+      });
+      continue;
+    }
     if (exerciseForms[i].type === 'Warm-up') {
       type = 0;
     } else if (exerciseForms[i].type === 'Strength') {
@@ -51,7 +59,13 @@ const addExercisesAndJoinTable = async (exerciseForms, workoutId) => {
   }
 
   try {
-    const exerciseIds = await addExercisesQueryHelper(exercisesPayload, addExerciseHelper, 'addExerciseHelper');
+    let exerciseIds = [];
+    if (exercisesPayload.length) {
+      exerciseIds = await addExercisesQueryHelper(exercisesPayload, addExerciseHelper, 'addExerciseHelper');
+    }
+    existingExercises.forEach(exercise => {
+      exerciseIds.splice(exercise.orderIndex, 0, exercise.id);
+    });
 
     for (let i = 0; i < exerciseIds.length; i++) {
       const exerciseWorkoutPayload = {
