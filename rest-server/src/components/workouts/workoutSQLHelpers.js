@@ -172,3 +172,16 @@ export const deleteStarExercise = `
   WHERE
     exercise_id=$1 AND user_id=$2
 `;
+
+export const getStarredExercisesByUser = `
+  SELECT
+    e.id, e.name, e.description, e.type, e.reps, e.sets, e.distance, e.pace, e.goaltime, se.id IS NOT NULL as star
+  FROM
+    exercises as e
+  FULL OUTER JOIN
+    starExercise as se
+  ON
+    e.id=se.exercise_id
+  WHERE
+    se.user_id=$1
+`;

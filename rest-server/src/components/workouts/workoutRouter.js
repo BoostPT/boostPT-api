@@ -27,4 +27,7 @@ router.route('/starworkout')
 router.route('/starexercise')
   .post(starExerciseController);
 
+router.route('/starredexercises/:user_id')
+  .get(workoutController);
+
 export default router;
