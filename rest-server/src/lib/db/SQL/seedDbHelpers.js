@@ -33,6 +33,8 @@ export const addWorkoutDummyData = async () => {
     success('successfully seeded users table');
   } catch (err) {
     error('error adding dummy user', err);
+  }
+};
 
 export const addTrainerClientNonUserDummyData = async () => {
   try {
