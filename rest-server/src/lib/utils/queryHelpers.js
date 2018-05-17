@@ -69,8 +69,9 @@ export const globalController = (query, name) => {
     }
     
     try {
-      const { rows } = await query(payload, url) || {};
+      const { rows } = await query(payload, url) || {rows: []};
       success(`${name} - sucessfully retrieved data ${JSON.stringify(rows)}`);
+      // console.log()
       if(rows.length === 0){
         return res.status(200).send(payload);
       }else{
