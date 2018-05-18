@@ -9,10 +9,12 @@ import {
   deleteFromUsersWorkouts,
   fetchExerciseIdsByWorkout,
   deleteFromExercises,
-  getStarredExercisesByUser
+  getStarredExercisesByUser,
+  fetchPublicWorkoutsByUser
 } from './workoutSQLHelpers';
 
 export const workoutQuery = async (payload, url) => {
+  const splitted = url.split("/");
   if (url.slice(0,10) === '/exercises') {
     try {
       return await globalQueryHelper(payload, fetchExercisesByWorkout, 'fetchExercisesByWorkout', ['workout_id']);
@@ -44,5 +46,7 @@ export const workoutQuery = async (payload, url) => {
     }
   } else if (url.slice(0, 17) === '/starredexercises') {
     return await globalQueryHelper(payload, getStarredExercisesByUser, 'getStarredExercisesByUser', ['user_id']);
+  }else if(splitted[1] === "public"){
+    return await globalQueryHelper(payload, fetchPublicWorkoutsByUser, 'fetchPublicWorkoutsByUser', ['user_id', 'is_public']);
   }
 };

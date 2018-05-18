@@ -20,6 +20,9 @@ router.route('/exercises/:workout_id')
 
 router.route('/delete/:workout_id')
   .delete(workoutController);
+  
+router.route('/public/user/:user_id')
+  .get(workoutController);
 
 router.route('/starworkout')
   .post(starWorkoutController);

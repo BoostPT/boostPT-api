@@ -9,7 +9,7 @@ export const signUpHelper = `
 
 export const loginHelper = `
     SELECT
-      id, username, email, password, isTrainer
+      id, username, email, password, isTrainer, picture
     FROM
       users
     WHERE

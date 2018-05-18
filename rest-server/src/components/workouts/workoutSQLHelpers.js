@@ -185,3 +185,14 @@ export const getStarredExercisesByUser = `
   WHERE
     se.user_id=$1
 `;
+
+export const fetchPublicWorkoutsByUser = `
+  SELECT
+    id, name, is_public, created_at
+  FROM
+    workouts
+  WHERE
+    creator_id=$1 AND is_public=$2
+  ORDER BY
+    id DESC
+`;

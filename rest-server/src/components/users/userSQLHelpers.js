@@ -3,3 +3,22 @@ export const fetchAllClientNonUserHelper =
 
 export const addClientNonUserHelper = 
 `INSERT INTO trainerclientnonuser (client_name, trainer_id) VALUES ($1, $2)`;
+
+export const fetchUserHelper = `
+  SELECT
+    id, email, username, password, isTrainer
+  FROM
+    users
+  WHERE
+    id=$1
+`;
+
+export const addUserPictureHelper = `
+  UPDATE 
+    users
+  SET 
+    picture=$2
+  WHERE
+    id=$1
+`;
+

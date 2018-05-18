@@ -7,17 +7,17 @@
     "test": "",
     "start": "npm-run-all -p start:rest-server start:socket-server",
     "start:rest-server": "cd rest-server && npm run start",
-    "setup": "npm-run-all -s setup:rest-server",
+    "start:socket-server": "cd socket-server && npm run socket",
+    "setup": "npm-run-all -s setup:rest-server setup:socket-server",
     "setup:rest-server": "cd rest-server && npm install",
+    "setup:socket-server": "cd socket-server && npm install",
     "db:setup:rest-server": "cd rest-server && babel-node src/config/database/setup.js",
     "db:seed:rest-server": "cd rest-server && babel-node src/config/database/seed.js",
-    "buildEnv": "node bin/buildEnv.js",
-    "start:socket-server": "cd socket-server && npm run socket"
+    "buildEnv": "node bin/buildEnv.js"
   },
   "dependencies": {
     "dotenv": "^5.0.1",
     "env": "^0.0.2",
-    "lodash": "^4.17.4",
     "nodemon": "^1.17.3",
     "npm-run-all": "^4.1.2"
   },

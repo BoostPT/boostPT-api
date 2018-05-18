@@ -53,19 +53,32 @@ export const globalController = (query, name) => {
    * 
    * @return {Function} returns a promisified controller
    */
+
   return async (req, res) => {
     const { url, method } = req;
+    const splittedUrl = url.split("/");
     let payload;
     if (method === 'POST' || method === 'PUT') {
       payload = req.body;
     } else {
       payload = req.params;
     }
+
+    if(splittedUrl[1] === "public"){
+      payload.is_public = true;
+    }
+    
     try {
-      const { rows } = await query(payload, url) || {};
-      success(`${name} - successfully retrieved data ${JSON.stringify(rows)}`);
-      return res.status(200).send(rows);
+      const { rows } = await query(payload, url) || {rows: []};
+      success(`${name} - sucessfully retrieved data ${JSON.stringify(rows)}`);
+      // console.log()
+      if(rows.length === 0){
+        return res.status(200).send(payload);
+      }else{
+        return res.status(200).send(rows);
+      }
     } catch (err) {
+      
       error(`${name} - error= ${err}`);
       return res.status(500).send(err);
     }
