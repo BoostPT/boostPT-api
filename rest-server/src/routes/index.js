@@ -13,6 +13,6 @@ router.use('/auth', authRouter);
 router.use('/users', verifyUserWithJWT, userRouter);
 router.use('/aws', awsRouter);
 router.use('/workouts', verifyUserWithJWT, workoutRouter);
-router.use('/messages', messageRouter);
+router.use('/messages/getchannels', messageRouter);
 
 export default router;

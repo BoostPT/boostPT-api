@@ -15,22 +15,19 @@ export const dropMessagesCollection = async () => {
 
 export const addMessagesDummyData = async () => {
   let message = new Messages.messageModel ({
-    participants: "Jake:Jim",
+    participants: 'gus:Jim',
     messages: [
       {
-        id: 1,
+        user: 'gus',
         text: 'hello world', 
-        senderId: 1
       },
       {
-        id: 2,
+        user: 'Jim',
         text: 'goodbye world', 
-        senderId: 2
       },
       {
-        id: 3,
+        user: 'gus',
         text: 'its been fun', 
-        senderId: 1
       },
     ],
 

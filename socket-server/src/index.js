@@ -8,7 +8,19 @@ server.listen(process.env.PORT, function() {
 });
 
 io.on('connection', (socket) => {
-  socket.on('message', (data) => {
-    io.emit('servermessage', data );
-  });
+
+  socket.on('subscribe', function(room) {
+    console.log('joining room', room);
+    socket.join(room);
+  })
+
+  socket.on('unsubscribe', function(room) {
+    console.log('leaving room', room);
+    socket.leave(room);
+  })
+
+  socket.on('send', function(data) {
+    console.log('sending message');
+    io.sockets.in(data.room).emit('message', data);
+  })
 });
