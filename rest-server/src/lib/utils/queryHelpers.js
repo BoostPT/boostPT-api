@@ -78,6 +78,7 @@ export const globalController = (query, name) => {
         return res.status(200).send(rows);
       }
     } catch (err) {
+      
       error(`${name} - error= ${err}`);
       return res.status(500).send(err);
     }
