@@ -15,8 +15,21 @@ export const dropMessagesCollection = async () => {
 
 export const addMessagesDummyData = async () => {
   let message = new Messages.messageModel ({
-    userId: 1, 
-    text: 'Hello, World!'
+    participants: 'gus:Jim',
+    messages: [
+      {
+        user: 'gus',
+        text: 'hello world', 
+      },
+      {
+        user: 'Jim',
+        text: 'goodbye world', 
+      },
+      {
+        user: 'gus',
+        text: 'its been fun', 
+      },
+    ],
   })
   try {
     await message.save();
@@ -25,3 +38,4 @@ export const addMessagesDummyData = async () => {
     error('error seeding messages table');
   }
 }
+
