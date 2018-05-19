@@ -30,8 +30,6 @@ export const addMessagesDummyData = async () => {
         text: 'its been fun', 
       },
     ],
-
-    
   })
   try {
     await message.save();

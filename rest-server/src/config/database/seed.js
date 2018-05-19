@@ -4,7 +4,7 @@ import {
 
 import {
   addUserDummyData,
-  addWorkoutDummyData
+  addWorkoutDummyData,
   addTrainerClientNonUserDummyData
 } from '../../lib/db/SQL/seedDbHelpers';
 

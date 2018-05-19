@@ -16,12 +16,12 @@ const options = {
 }
 
 mongoose.connect(`mongodb://${options.auth.user}:${options.auth.password}@${options.authSource}:${options.port}/boostpt`);
-const db = mongoose.connection;
-db.on('error', (err) => {
+const mongoDB = mongoose.connection;
+mongoDB.on('error', (err) => {
   error('error in mongoDB', err);
 });
-db.once('open', () => {
+mongoDB.once('open', () => {
   success('successfully connected to mongoDB', options.authSource);
 });
 
-export default db;
+export default mongoDB;

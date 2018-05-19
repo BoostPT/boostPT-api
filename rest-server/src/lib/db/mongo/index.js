@@ -12,8 +12,3 @@ let roomSchema = mongoose.Schema({
 let messageModel = mongoose.model('Message', roomSchema);
 
 module.exports.messageModel = messageModel;
-
-// participants: {
-//   type: String,
-//   unique: true
-// },
