@@ -5,7 +5,8 @@ import {
   fetchAllClientNonUserHelper, 
   fetchAllUserHelper,
   fetchUserHelper,
-  addUserPictureHelper
+  addUserPictureHelper,
+  fetchAllTrainersHelper
 } from './userSQLHelpers';
 
 export const fetchClientNonUserQuery = async (payload) => {
@@ -27,4 +28,8 @@ export const userAddPictureQuery = async (payload, url) => {
   if(url.split('/')[2] === 'picture'){
     return await globalQueryHelper(payload, addUserPictureHelper, 'fetchAllUserHelper', ['userId', 'pictureUrl']);
   }
+}
+
+export const fetchAllTrainersQuery = async (payload) => {
+  return await globalQueryHelper(payload, fetchAllTrainersHelper, 'fetchAllTrainersController', []);
 };

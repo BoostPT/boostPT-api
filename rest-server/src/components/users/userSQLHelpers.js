@@ -22,3 +22,10 @@ export const addUserPictureHelper = `
     id=$1
 `;
 
+export const fetchAllTrainersHelper =
+`SELECT 
+  id, username, email, picture 
+FROM 
+  users 
+WHERE 
+  isTrainer=true`;
