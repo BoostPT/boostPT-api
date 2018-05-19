@@ -346,11 +346,25 @@ export const createEventsTable = async () => {
         date_time TIMESTAMP without time zone NOT NULL,
         CONSTRAINT events_pk
           PRIMARY KEY(id),
+        CONSTRAINT fk_events_user_id
+          FOREIGN KEY(user_id) REFERENCES users(id),
+        CONSTRAINT fk_events_workout_id
+          FOREIGN KEY(workout_id) REFERENCES workouts(id)
       )
       `
     );
     success('successfully created events table')
   } catch(err) {
+    error('error creating events table ', err);
+  }
+};
+
+export const dropEventsTable = async () => {
+  try {
+    await db.query(
+      `DROP TABLE IF EXISTS events cascade`
+    );
+  } catch (err) {
     error('error dropping events table ', err);
   }
 };
