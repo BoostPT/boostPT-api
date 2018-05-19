@@ -37,7 +37,10 @@ export const globalQueryHelper = async (payload, queryString, name, columns=[]) 
       text: queryString,
       values: queryPayloadOrganizer(payload, columns),
     };
+
+    console.log("inside query helper");
     const data = await db.query(query);
+
     success(`${name} - successfully retrieved data ${JSON.stringify(data)}`);
     return data;
   } catch (err) {

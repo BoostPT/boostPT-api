@@ -331,3 +331,26 @@ export const dropStarExerciseTable = async () => {
     error('error dropping starExercise table ', err);
   }
 };
+
+export const createEventsTable = async () => {
+  try {
+    await db.query(
+      `
+      CREATE TABLE IF NOT EXISTS events
+      (
+        id SERIAL,
+        user_id INT NOT NULL,
+        workout_id INT,
+        title VARCHAR(255) NOT NULL,
+        description VARCHAR(255),
+        date_time TIMESTAMP without time zone NOT NULL,
+        CONSTRAINT events_pk
+          PRIMARY KEY(id),
+      )
+      `
+    );
+    success('successfully created events table')
+  } catch(err) {
+    error('error dropping events table ', err);
+  }
+};
