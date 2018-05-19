@@ -32,6 +32,7 @@ export const workoutQuery = async (payload, url) => {
       // query for exercises by workout id
       const exercises = await globalQueryHelper(payload, fetchExerciseIdsByWorkout, 'fetchExerciseIdsByWorkout', ['workout_id']);
       await globalQueryHelper(payload, deleteFromExerciseWorkout, 'deleteFromExerciseWorkout', ['workout_id']);
+      await globalQueryHelper(payload, deleteStarWorkout, 'deleteStarWorkout', ['workout_id', 'user_id']);
       await globalQueryHelper(payload, deleteFromUsersWorkouts, 'deleteFromUsersWorkouts', ['workout_id']);
       // iterate over exercises and delete each from exercises
       let i = 0;
