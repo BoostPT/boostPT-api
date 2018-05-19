@@ -15,7 +15,8 @@ const options = {
   port: process.env.NODE_ENV = 'production' ? process.env.NOSQL_AWS_PORT : process.env.NOSQL_LOCAL_PORT
 }
 
-mongoose.connect(`mongodb://${options.auth.user}:${options.auth.password}@${options.authSource}:${options.port}/boostpt`);
+// mongoose.connect(`mongodb://${options.auth.user}:${options.auth.password}@${options.authSource}:${options.port}/boostpt`);
+mongoose.connect(`mongodb://localhost:27017/boostpt`);
 const mongoDB = mongoose.connection;
 mongoDB.on('error', (err) => {
   error('error in mongoDB', err);
