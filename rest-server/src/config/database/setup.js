@@ -8,7 +8,12 @@ import {
   createStarWorkoutTable,
   createStarExerciseTable,
   createTrainerClientNonUserTable,
+<<<<<<< HEAD
   createEventsTable,
+=======
+  createTrainerClientUserTable,
+  createTrainerRequestsTable,
+>>>>>>> set up routes and query to insert a traine request into db
   dropDatabase,
   dropUserTable,
   dropWorkoutTable,
@@ -20,6 +25,8 @@ import {
   dropEventsTable,
   dropTrainerClientNonUserTable,
   useDatabase,
+  droptrainerClientUserTable,
+  dropTrainerRequestsTable
 } from '../../lib/db/SQL';
 
 // Temp until we make more seed data files
@@ -46,6 +53,8 @@ const setup = async () => {
   await dropStarExerciseTable();
   await dropTrainerClientNonUserTable();
   await dropEventsTable();
+  await droptrainerClientUserTable();
+  await dropTrainerRequestsTable();
   await createDatabase();
   await createUserTable();
   await createWorkoutTable();
@@ -58,6 +67,8 @@ const setup = async () => {
   await createStarExerciseTable();
   await createTrainerClientNonUserTable();
   await createEventsTable();
+  await createTrainerClientUserTable();
+  await createTrainerRequestsTable();
   await addUserDummyData();
   await addTrainerClientNonUserDummyData();
   await dropMessagesCollection();
