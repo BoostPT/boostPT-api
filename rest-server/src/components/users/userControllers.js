@@ -24,3 +24,5 @@ export const fetchTrainerRequestOut = globalController(fetchTrainerRequestOutQue
 export const deleteTrainerRequest = globalController(deleteTrainerRequestQuery, 'deleteTrainerRequestQuery');
 export const addTrainerClientConnection = globalController(addTrainerClientConnectionQuery, 'addTrainerClientConnectionQuery');
 export const fetchClient = globalController(fetchClientQuery, 'fetchClientQuery');
+// export const getTrainerRequestIn = globalController(addTrainerRequestInQuery, 'addTrainerRequestQuery');
+// export const getTrainerRequestOut = globalController(addTrainerRequestOutQuery, 'addTrainerRequestQuery');
