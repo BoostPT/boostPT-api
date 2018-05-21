@@ -38,3 +38,21 @@ export const addTrainerRequestHelper = `
   VALUES
     ($1, $2)
 `;
+
+export const fetchTrainerRequestInQueryHelper = `
+  SELECT
+    client_id
+  FROM
+    trainerRequests
+  WHERE
+    trainer_id=$1
+`;
+
+export const fetchTrainerRequestOutQueryHelper = `
+  SELECT
+    trainer_id
+  FROM
+    trainerRequests
+  WHERE
+    client_id=$1
+`;

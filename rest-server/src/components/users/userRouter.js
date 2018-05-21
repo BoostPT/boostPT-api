@@ -6,11 +6,22 @@ import {
   userController,
   userPictureEdit,
   fetchAllTrainers,
-  addTrainerRequest
+  addTrainerRequest,
+  fetchTrainerRequestIn,
+  fetchTrainerRequestOut
 } from './userControllers';
 
 const router = express.Router();
 
+router.route('/request')
+  .post(addTrainerRequest);
+
+router.route('/request-in/:trainer_id')
+  .get(fetchTrainerRequestIn);
+
+router.route('/request-out/:client_id')
+  .get(fetchTrainerRequestOut);
+  
 router.route('/trainers')
   .get(fetchAllTrainers);
   
@@ -23,14 +34,6 @@ router.route('/addnonuserclient')
 router.route('/:userId/picture')
   .put(userPictureEdit);
 
-router.route('/request')
-  .post(addTrainerRequest);
-
-// router.route('/request-in/:client_id/:trainer_id')
-//   .get(addTrainerRequest);
-
-// router.route('/request-out/:client_id/:trainer_id')
-//   .get(addTrainerRequest);
 
 
 

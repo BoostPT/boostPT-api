@@ -7,7 +7,9 @@ import {
   fetchUserHelper,
   addUserPictureHelper,
   fetchAllTrainersHelper,
-  addTrainerRequestHelper
+  addTrainerRequestHelper,
+  fetchTrainerRequestInQueryHelper,
+  fetchTrainerRequestOutQueryHelper
 } from './userSQLHelpers';
 
 export const fetchClientNonUserQuery = async (payload) => {
@@ -36,4 +38,12 @@ export const fetchAllTrainersQuery = async (payload) => {
 
 export const addTrainerRequestQuery = async (payload) => {
   return await globalQueryHelper(payload, addTrainerRequestHelper, 'addTrainerRequestHelper', ['client_id', 'trainer_id']);
+};
+
+export const fetchTrainerRequestInQuery = async (payload) => {
+  return await globalQueryHelper(payload, fetchTrainerRequestInQueryHelper, 'fetchTrainerRequestInQueryHelper', ['trainer_id']);
+};
+
+export const fetchTrainerRequestOutQuery = async (payload) => {
+  return await globalQueryHelper(payload, fetchTrainerRequestOutQueryHelper, 'fetchTrainerRequestOutQueryHelper', ['client_id']);
 };
