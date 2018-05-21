@@ -5,5 +5,4 @@ import {
 } from './eventsSQLHelpers';
 
 export const eventQuery = async (payload, url) => {
-
 };

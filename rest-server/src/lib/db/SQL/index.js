@@ -343,7 +343,12 @@ export const createEventsTable = async () => {
         workout_id INT,
         title VARCHAR(255) NOT NULL,
         description VARCHAR(255),
-        date_time TIMESTAMP without time zone NOT NULL,
+        month INT NOT NULL,
+        day INT NOT NULL,
+        year INT NOT NULL,
+        hour INT NOT NULL,
+        minute INT NOT NULL,
+        second INT NOT NULL,
         CONSTRAINT events_pk
           PRIMARY KEY(id),
         CONSTRAINT fk_events_user_id

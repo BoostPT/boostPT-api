@@ -1,12 +1,13 @@
 import express from 'express';
 
 import {
-  eventsController
+  eventsController,
+  addEventController
 } from './eventsController';
 
 const router = express.Router();
 
-// router.route().post(addEventController);
+router.route('/workout').post(addEventController);
 
 // router.route().get(eventController);
 
