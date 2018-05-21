@@ -346,8 +346,10 @@ export const createEventsTable = async () => {
         month INT NOT NULL,
         day INT NOT NULL,
         year INT NOT NULL,
-        hour INT NOT NULL,
-        minute INT NOT NULL,
+        start_hour INT NOT NULL,
+        start_minute INT NOT NULL,
+        end_hour INT NOT NULL,
+        end_minute INT NOT NULL,
         second INT NOT NULL,
         CONSTRAINT events_pk
           PRIMARY KEY(id),

@@ -17,9 +17,9 @@ export const eventsController = globalController(eventQuery, 'eventsController')
 
 export const addEventController = async (req, res) => {
   try {
-    console.log("inside addevent controller",req.body);
-    const result = await globalQueryHelper(req.body, addEventHelper, 'addEventHelper', ['userId', 'workoutId', 'workoutName', 'desc', 'month', 'day', 'year', 'hour', 'minute', 'second']);
-    //user_id, workout_id, title, description, month, day, year, hour, minute, second
+    const result = await globalQueryHelper(req.body, addEventHelper, 'addEventHelper', ['userId', 'workoutId', 'workoutName', 'desc', 'month', 'day', 'year', 'startHour', 'startMinute', 'endHour', 'endMinute', 'second']);
+
+    success(`addEventController - successfully inserted event table`);
     return res.status(200).send();
   } catch (err) {
     error(`addEventController - error= ${err}`);

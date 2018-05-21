@@ -7,6 +7,8 @@ import {
 
 const router = express.Router();
 
+router.route('/:userId').get(eventsController);
+
 router.route('/workout').post(addEventController);
 
 // router.route().get(eventController);
