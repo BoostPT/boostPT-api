@@ -41,9 +41,13 @@ export const addTrainerRequestHelper = `
 
 export const fetchTrainerRequestInQueryHelper = `
   SELECT
-    client_id
+    users.id, username, picture
   FROM
+    users
+  JOIN
     trainerRequests
+  ON
+    users.id=trainerRequests.client_id
   WHERE
     trainer_id=$1
 `;
@@ -55,4 +59,14 @@ export const fetchTrainerRequestOutQueryHelper = `
     trainerRequests
   WHERE
     client_id=$1
+`;
+
+export const deleteTrainerRequestQueryHelper = `
+  DELETE
+  FROM
+    trainerRequests
+  WHERE
+    client_id=$1
+  AND
+    trainer_id=$2
 `;

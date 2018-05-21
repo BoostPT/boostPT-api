@@ -7,7 +7,8 @@ import {
     userAddPictureQuery,
     addTrainerRequestQuery,
     fetchTrainerRequestInQuery,
-    fetchTrainerRequestOutQuery
+    fetchTrainerRequestOutQuery,
+    deleteTrainerRequestQuery
  } from './userQueries';
 
 export const fetchNonUserClientsController = globalController(fetchClientNonUserQuery, 'nonUserClientsController');
@@ -18,3 +19,4 @@ export const fetchAllTrainers = globalController(fetchAllTrainersQuery, 'fetchAl
 export const addTrainerRequest = globalController(addTrainerRequestQuery, 'addTrainerRequestQuery');
 export const fetchTrainerRequestIn = globalController(fetchTrainerRequestInQuery, 'fetchTrainerRequestQuery');
 export const fetchTrainerRequestOut = globalController(fetchTrainerRequestOutQuery, 'fetchTrainerRequestQuery');
+export const deleteTrainerRequest = globalController(deleteTrainerRequestQuery, 'deleteTrainerRequestQuery');

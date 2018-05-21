@@ -8,7 +8,8 @@ import {
   fetchAllTrainers,
   addTrainerRequest,
   fetchTrainerRequestIn,
-  fetchTrainerRequestOut
+  fetchTrainerRequestOut,
+  deleteTrainerRequest
 } from './userControllers';
 
 const router = express.Router();
@@ -21,6 +22,9 @@ router.route('/request-in/:trainer_id')
 
 router.route('/request-out/:client_id')
   .get(fetchTrainerRequestOut);
+
+router.route('/request-delete/:client_id/:trainer_id')
+  .delete(deleteTrainerRequest);
   
 router.route('/trainers')
   .get(fetchAllTrainers);
