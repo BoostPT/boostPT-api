@@ -33,7 +33,7 @@ router.route('/add-connection')
 
 router.route('/fetch-client/:client_id')
   .get(fetchClient);
-
+  
 router.route('/trainers')
   .get(fetchAllTrainers);
   
