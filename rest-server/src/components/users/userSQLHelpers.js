@@ -70,3 +70,20 @@ export const deleteTrainerRequestQueryHelper = `
   AND
     trainer_id=$2
 `;
+
+export const addTrainerClientConnectionQueryHelper = `
+  INSERT
+  INTO
+    trainerClientUser (client_id, trainer_id)
+  VALUES
+    ($1, $2)
+`;
+
+export const fetchClientQueryHelper = `
+  SELECT
+    id, email, username, picture
+  FROM
+    users
+  WHERE
+    id=$1
+`;

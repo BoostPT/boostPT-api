@@ -9,7 +9,9 @@ import {
   addTrainerRequest,
   fetchTrainerRequestIn,
   fetchTrainerRequestOut,
-  deleteTrainerRequest
+  deleteTrainerRequest,
+  addTrainerClientConnection,
+  fetchClient
 } from './userControllers';
 
 const router = express.Router();
@@ -25,7 +27,13 @@ router.route('/request-out/:client_id')
 
 router.route('/request-delete/:client_id/:trainer_id')
   .delete(deleteTrainerRequest);
-  
+
+router.route('/add-connection')
+  .post(addTrainerClientConnection);
+
+router.route('/fetch-client/:client_id')
+  .get(fetchClient);
+
 router.route('/trainers')
   .get(fetchAllTrainers);
   

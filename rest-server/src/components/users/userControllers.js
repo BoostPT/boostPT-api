@@ -8,7 +8,9 @@ import {
     addTrainerRequestQuery,
     fetchTrainerRequestInQuery,
     fetchTrainerRequestOutQuery,
-    deleteTrainerRequestQuery
+    deleteTrainerRequestQuery,
+    addTrainerClientConnectionQuery,
+    fetchClientQuery
  } from './userQueries';
 
 export const fetchNonUserClientsController = globalController(fetchClientNonUserQuery, 'nonUserClientsController');
@@ -20,3 +22,5 @@ export const addTrainerRequest = globalController(addTrainerRequestQuery, 'addTr
 export const fetchTrainerRequestIn = globalController(fetchTrainerRequestInQuery, 'fetchTrainerRequestQuery');
 export const fetchTrainerRequestOut = globalController(fetchTrainerRequestOutQuery, 'fetchTrainerRequestQuery');
 export const deleteTrainerRequest = globalController(deleteTrainerRequestQuery, 'deleteTrainerRequestQuery');
+export const addTrainerClientConnection = globalController(addTrainerClientConnectionQuery, 'addTrainerClientConnectionQuery');
+export const fetchClient = globalController(fetchClientQuery, 'fetchClientQuery');

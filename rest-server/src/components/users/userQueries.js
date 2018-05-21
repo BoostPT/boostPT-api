@@ -10,7 +10,9 @@ import {
   addTrainerRequestHelper,
   fetchTrainerRequestInQueryHelper,
   fetchTrainerRequestOutQueryHelper,
-  deleteTrainerRequestQueryHelper
+  deleteTrainerRequestQueryHelper,
+  addTrainerClientConnectionQueryHelper,
+  fetchClientQueryHelper
 } from './userSQLHelpers';
 
 export const fetchClientNonUserQuery = async (payload) => {
@@ -51,4 +53,12 @@ export const fetchTrainerRequestOutQuery = async (payload) => {
 
 export const deleteTrainerRequestQuery = async (payload) => {
   return await globalQueryHelper(payload, deleteTrainerRequestQueryHelper, 'deleteTrainerRequestQueryHelper', ['client_id', 'trainer_id']);
+};
+
+export const addTrainerClientConnectionQuery = async (payload) => {
+  return await globalQueryHelper(payload, addTrainerClientConnectionQueryHelper, 'addTrainerClientConnectionQueryHelper', ['client_id', 'trainer_id']);
+};
+
+export const fetchClientQuery = async (payload) => {
+  return await globalQueryHelper(payload, fetchClientQueryHelper, 'fetchClientQueryHelper', ['client_id']);
 };
