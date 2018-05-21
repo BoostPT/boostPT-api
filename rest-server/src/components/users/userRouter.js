@@ -46,14 +46,6 @@ router.route('/addnonuserclient')
 router.route('/:userId/picture')
   .put(userPictureEdit);
 
-router.route('/request')
-  .post(addTrainerRequest);
-
-// router.route('/request-in/:client_id/:trainer_id')
-//   .get(addTrainerRequest);
-
-// router.route('/request-out/:client_id/:trainer_id')
-//   .get(addTrainerRequest);
 
 
 

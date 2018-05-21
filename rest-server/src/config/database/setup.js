@@ -8,17 +8,11 @@ import {
   createStarWorkoutTable,
   createStarExerciseTable,
   createTrainerClientNonUserTable,
-<<<<<<< HEAD
-<<<<<<< HEAD
   createEventsTable,
-=======
   createTrainerClientUserTable,
   createTrainerRequestsTable,
->>>>>>> set up routes and query to insert a traine request into db
-=======
   createTrainerClientUserTable,
   createTrainerRequestsTable,
->>>>>>> set up routes and query to insert a traine request into db
   dropDatabase,
   dropUserTable,
   dropWorkoutTable,
