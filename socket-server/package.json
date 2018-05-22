@@ -5,11 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "socket": "nodemon src/index.js"
+    "socket": "nodemon bin/entry.js"
   },
   "dependencies": {
+    "mongoose": "^5.0.13",
     "socket.io": "^2.1.0",
     "socket.io-client": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "morgan": "^1.9.0"
   },
   "author": "",
   "license": "ISC"
