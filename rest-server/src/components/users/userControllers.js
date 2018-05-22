@@ -1,6 +1,6 @@
 import { globalController } from '../../lib/utils/queryHelpers';
 import { 
-    fetchClientNonUserQuery,
+    fetchClientsQuery,
     addClientNonUserQuery,
     fetchAllTrainersQuery,
     userQuery,
@@ -13,7 +13,7 @@ import {
     fetchClientQuery
  } from './userQueries';
 
-export const fetchNonUserClientsController = globalController(fetchClientNonUserQuery, 'nonUserClientsController');
+export const fetchClientsController = globalController(fetchClientsQuery, 'fetchClientsQuery');
 export const addNonUserClientsController = globalController(addClientNonUserQuery, 'addClientNonUserController');
 export const userPictureEdit = globalController(userAddPictureQuery, 'userPictureEdit');
 export const userController = globalController(userQuery , 'userController');

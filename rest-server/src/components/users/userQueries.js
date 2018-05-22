@@ -12,11 +12,19 @@ import {
   fetchTrainerRequestOutQueryHelper,
   deleteTrainerRequestQueryHelper,
   addTrainerClientConnectionQueryHelper,
-  fetchClientQueryHelper
+  fetchClientQueryHelper,
+  fetchUserClientsQueryHelper
 } from './userSQLHelpers';
 
-export const fetchClientNonUserQuery = async (payload) => {
-  return await globalQueryHelper(payload, fetchAllClientNonUserHelper, 'fetchClientNonUserController', ['trainer_id']);
+export const fetchClientsQuery = async (payload) => {
+  const nonUsers = await globalQueryHelper(payload, fetchAllClientNonUserHelper, 'fetchAllClientNonUserHelper', ['trainer_id']);
+  const users = await globalQueryHelper(payload, fetchUserClientsQueryHelper, 'fetchUserClientsQueryHelper', ['trainer_id']);
+  let i = 0;
+  while (i < nonUsers.rows.length) {
+    users.rows.push(nonUsers.rows[i]);
+    i++;
+  }
+  return users;
 };
 
 export const addClientNonUserQuery = async (payload) => {

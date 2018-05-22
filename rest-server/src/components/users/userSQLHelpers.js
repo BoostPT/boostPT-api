@@ -87,3 +87,16 @@ export const fetchClientQueryHelper = `
   WHERE
     id=$1
 `;
+
+export const fetchUserClientsQueryHelper = `
+  SELECT
+    users.id, email, username, picture
+  FROM
+    users
+  JOIN
+    trainerClientUser
+  ON
+    users.id=trainerClientUser.client_id
+  WHERE
+    trainerClientUser.trainer_id=$1
+`;

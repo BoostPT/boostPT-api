@@ -1,7 +1,7 @@
 import express from 'express';
 
 import {
-  fetchNonUserClientsController,
+  fetchClientsController,
   addNonUserClientsController,
   userController,
   userPictureEdit,
@@ -38,7 +38,7 @@ router.route('/trainers')
   .get(fetchAllTrainers);
   
 router.route('/:trainer_id')
-  .get(fetchNonUserClientsController);
+  .get(fetchClientsController);
 
 router.route('/addnonuserclient')
   .post(addNonUserClientsController);
