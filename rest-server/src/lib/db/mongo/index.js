@@ -1,5 +1,4 @@
-import mongoose from 'mongoose';
-import {error, success} from "../../log";
+const mongoose = require('mongoose');
 
 let roomSchema = mongoose.Schema({
   participants: {

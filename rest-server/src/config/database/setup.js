@@ -54,8 +54,8 @@ const setup = async () => {
   await createTrainerClientNonUserTable();
   await addUserDummyData();
   await addTrainerClientNonUserDummyData();
-  // await dropMessagesCollection();
-  // await addMessagesDummyData();
+  await dropMessagesCollection();
+  await addMessagesDummyData();
   process.exit();
 };
 
