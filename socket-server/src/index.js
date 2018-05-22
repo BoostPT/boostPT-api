@@ -29,10 +29,7 @@ io.on('connection', (socket) => {
 });
 
 const addMessage = (messagedata) => {
-  Messages.messageModel.update({participants: messagedata.room}, {$push:{'messages': {'user':messagedata.user, 'text': messagedata.message}}})
-  .then(data => {
-    console.log('data = ', data)
-  })
+  Messages.messageModel.update({participants: messagedata.room}, {$push:{'messages': {'user':messagedata.user, 'text': messagedata.message}}});
 }
 
 
