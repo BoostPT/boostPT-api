@@ -10,7 +10,9 @@ import {
   fetchExerciseIdsByWorkout,
   deleteFromExercises,
   getStarredExercisesByUser,
-  fetchPublicWorkoutsByUser
+  fetchPublicWorkoutsByUser,
+  starWorkoutExistance,
+  deleteStarWorkout
 } from './workoutSQLHelpers';
 
 export const workoutQuery = async (payload, url) => {
@@ -31,8 +33,19 @@ export const workoutQuery = async (payload, url) => {
     try {
       // query for exercises by workout id
       const exercises = await globalQueryHelper(payload, fetchExerciseIdsByWorkout, 'fetchExerciseIdsByWorkout', ['workout_id']);
+
       await globalQueryHelper(payload, deleteFromExerciseWorkout, 'deleteFromExerciseWorkout', ['workout_id']);
+
       await globalQueryHelper(payload, deleteFromUsersWorkouts, 'deleteFromUsersWorkouts', ['workout_id']);
+
+      const star = await globalQueryHelper(req.body, starExerciseExistance, 'starExerciseExistance', ['exercise_id', 'user_id']);
+
+      if (star.rows[0].exists) {
+        await globalQueryHelper(req.body, deleteStarExercise, 'deleteStarExercise', ['exercise_id', 'user_id']);
+      }
+      
+      await globalQueryHelper(payload, deleteStarWorkout, 'deleteStarWorkout'['workout_id', 'user_id']);
+
       // iterate over exercises and delete each from exercises
       let i = 0;
       while (i < exercises.rows.length) {
@@ -46,7 +59,7 @@ export const workoutQuery = async (payload, url) => {
     }
   } else if (url.slice(0, 17) === '/starredexercises') {
     return await globalQueryHelper(payload, getStarredExercisesByUser, 'getStarredExercisesByUser', ['user_id']);
-  }else if(splitted[1] === "public"){
+  }else if(splitted[1] === "public") {
     return await globalQueryHelper(payload, fetchPublicWorkoutsByUser, 'fetchPublicWorkoutsByUser', ['user_id', 'is_public']);
   }
 };

@@ -90,15 +90,11 @@ export const deleteFromWorkouts = `
 `;
 
 export const deleteFromExerciseWorkout = `
-  DELETE
-  FROM
-    exerciseWorkout
-  JOIN
-    exerciseWorkout as ew
-  ON
-    e.id = ew.exercise_id
-  WHERE
-    e.workout_id=$1
+DELETE
+FROM
+  exerciseWorkout
+WHERE
+  workout_id=$1
 `;
 
 export const deleteFromUsersWorkouts = `

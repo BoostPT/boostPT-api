@@ -331,3 +331,47 @@ export const dropStarExerciseTable = async () => {
     error('error dropping starExercise table ', err);
   }
 };
+
+export const createEventsTable = async () => {
+  try {
+    await db.query(
+      `
+      CREATE TABLE IF NOT EXISTS events
+      (
+        id SERIAL,
+        user_id INT NOT NULL,
+        workout_id INT,
+        title VARCHAR(255) NOT NULL,
+        description VARCHAR(255),
+        month INT NOT NULL,
+        day INT NOT NULL,
+        year INT NOT NULL,
+        start_hour INT NOT NULL,
+        start_minute INT NOT NULL,
+        end_hour INT NOT NULL,
+        end_minute INT NOT NULL,
+        second INT NOT NULL,
+        CONSTRAINT events_pk
+          PRIMARY KEY(id),
+        CONSTRAINT fk_events_user_id
+          FOREIGN KEY(user_id) REFERENCES users(id),
+        CONSTRAINT fk_events_workout_id
+          FOREIGN KEY(workout_id) REFERENCES workouts(id)
+      )
+      `
+    );
+    success('successfully created events table')
+  } catch(err) {
+    error('error creating events table ', err);
+  }
+};
+
+export const dropEventsTable = async () => {
+  try {
+    await db.query(
+      `DROP TABLE IF EXISTS events cascade`
+    );
+  } catch (err) {
+    error('error dropping events table ', err);
+  }
+};
