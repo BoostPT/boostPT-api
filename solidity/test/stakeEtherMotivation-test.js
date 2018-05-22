@@ -21,6 +21,7 @@ contract('StakeEtherMotivation test', async (accounts) => {
 
     const result = await instance.fetchIncentives();
 
+    assert.equal(result[1].length, 1);
     assert.equal(result[1][0], '0xCbdC7A852494eb6B4BcB44F114D2396AcAe15668'.toLowerCase() );
     // 2nd test isn't passing for some reason
     // AssertionError: expected '0x7b0b0185e088b8b10e1f1ae5b8b11b8a00000000' to equal '0x7b0b0185e088b8f76171b78fa2ee7c383f4af940'
@@ -38,13 +39,12 @@ contract('StakeEtherMotivation test', async (accounts) => {
     await instance.cancelIncentive(before[0][0]);
     const after =  await instance.fetchIncentives();
 
-    console.log(after)
+    assert.equal(after[0][0], '0x0000000000000000000000000000000000000000000000000000000000000000');
+    assert.equal(after[1][0], '0x0000000000000000000000000000000000000000');
+    assert.equal(after[2][0], '0x0000000000000000000000000000000000000000');
+    assert.equal(after[3][0].toNumber(), 0);
+    assert.equal(after[4][0].toNumber(), 0);
 
-    assert.equal(after[0].length, 0);
-    assert.equal(after[1].length, 0);
-    assert.equal(after[2].length, 0);
-    assert.equal(after[3].length, 0);
-    assert.equal(after[4].length, 0);
   });
 
 
