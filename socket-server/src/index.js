@@ -28,8 +28,8 @@ io.on('connection', (socket) => {
   })
 });
 
-const addMessage = (messagedata) => {
-  Messages.messageModel.update({participants: messagedata.room}, {$push:{'messages': {'user':messagedata.user, 'text': messagedata.message}}});
+const addMessage = async (messagedata) => {
+  await Messages.messageModel.update({participants: messagedata.room}, {$push:{'messages': {'user':messagedata.user, 'text': messagedata.message}}});
 }
 
 
