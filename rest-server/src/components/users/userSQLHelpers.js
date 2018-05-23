@@ -22,10 +22,81 @@ export const addUserPictureHelper = `
     id=$1
 `;
 
-export const fetchAllTrainersHelper =
-`SELECT 
-  id, username, email, picture 
-FROM 
-  users 
-WHERE 
-  isTrainer=true`;
+export const fetchAllTrainersHelper = `
+  SELECT 
+    id, username, email, picture 
+  FROM 
+    users 
+  WHERE 
+    isTrainer=true
+`;
+
+export const addTrainerRequestHelper = `
+  INSERT
+  INTO
+    trainerRequests (client_id, trainer_id)
+  VALUES
+    ($1, $2)
+`;
+
+export const fetchTrainerRequestInQueryHelper = `
+  SELECT
+    users.id, username, picture
+  FROM
+    users
+  JOIN
+    trainerRequests
+  ON
+    users.id=trainerRequests.client_id
+  WHERE
+    trainer_id=$1
+`;
+
+export const fetchTrainerRequestOutQueryHelper = `
+  SELECT
+    trainer_id
+  FROM
+    trainerRequests
+  WHERE
+    client_id=$1
+`;
+
+export const deleteTrainerRequestQueryHelper = `
+  DELETE
+  FROM
+    trainerRequests
+  WHERE
+    client_id=$1
+  AND
+    trainer_id=$2
+`;
+
+export const addTrainerClientConnectionQueryHelper = `
+  INSERT
+  INTO
+    trainerClientUser (client_id, trainer_id)
+  VALUES
+    ($1, $2)
+`;
+
+export const fetchClientQueryHelper = `
+  SELECT
+    id, email, username, picture
+  FROM
+    users
+  WHERE
+    id=$1
+`;
+
+export const fetchUserClientsQueryHelper = `
+  SELECT
+    users.id, email, username, picture
+  FROM
+    users
+  JOIN
+    trainerClientUser
+  ON
+    users.id=trainerClientUser.client_id
+  WHERE
+    trainerClientUser.trainer_id=$1
+`;

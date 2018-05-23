@@ -6,13 +6,26 @@ import {
   fetchAllUserHelper,
   fetchUserHelper,
   addUserPictureHelper,
-  fetchAllTrainersHelper
+  fetchAllTrainersHelper,
+  addTrainerRequestHelper,
+  fetchTrainerRequestInQueryHelper,
+  fetchTrainerRequestOutQueryHelper,
+  deleteTrainerRequestQueryHelper,
+  addTrainerClientConnectionQueryHelper,
+  fetchClientQueryHelper,
+  fetchUserClientsQueryHelper
 } from './userSQLHelpers';
 
-export const fetchClientNonUserQuery = async (payload) => {
-  return await globalQueryHelper(payload, fetchAllClientNonUserHelper, 'fetchClientNonUserController', ['trainer_id']);
+export const fetchClientsQuery = async (payload) => {
+  const nonUsers = await globalQueryHelper(payload, fetchAllClientNonUserHelper, 'fetchAllClientNonUserHelper', ['trainer_id']);
+  const users = await globalQueryHelper(payload, fetchUserClientsQueryHelper, 'fetchUserClientsQueryHelper', ['trainer_id']);
+  let i = 0;
+  while (i < nonUsers.rows.length) {
+    users.rows.push(nonUsers.rows[i]);
+    i++;
+  }
+  return users;
 };
-
 
 export const addClientNonUserQuery = async (payload) => {
   return await globalQueryHelper(payload, addClientNonUserHelper, 'addClientNonUserController', ['client_name', 'trainer_id']);
@@ -32,4 +45,28 @@ export const userAddPictureQuery = async (payload, url) => {
 
 export const fetchAllTrainersQuery = async (payload) => {
   return await globalQueryHelper(payload, fetchAllTrainersHelper, 'fetchAllTrainersController', []);
+};
+
+export const addTrainerRequestQuery = async (payload) => {
+  return await globalQueryHelper(payload, addTrainerRequestHelper, 'addTrainerRequestHelper', ['client_id', 'trainer_id']);
+};
+
+export const fetchTrainerRequestInQuery = async (payload) => {
+  return await globalQueryHelper(payload, fetchTrainerRequestInQueryHelper, 'fetchTrainerRequestInQueryHelper', ['trainer_id']);
+};
+
+export const fetchTrainerRequestOutQuery = async (payload) => {
+  return await globalQueryHelper(payload, fetchTrainerRequestOutQueryHelper, 'fetchTrainerRequestOutQueryHelper', ['client_id']);
+};
+
+export const deleteTrainerRequestQuery = async (payload) => {
+  return await globalQueryHelper(payload, deleteTrainerRequestQueryHelper, 'deleteTrainerRequestQueryHelper', ['client_id', 'trainer_id']);
+};
+
+export const addTrainerClientConnectionQuery = async (payload) => {
+  return await globalQueryHelper(payload, addTrainerClientConnectionQueryHelper, 'addTrainerClientConnectionQueryHelper', ['client_id', 'trainer_id']);
+};
+
+export const fetchClientQuery = async (payload) => {
+  return await globalQueryHelper(payload, fetchClientQueryHelper, 'fetchClientQueryHelper', ['client_id']);
 };

@@ -26,10 +26,18 @@ io.on('connection', (socket) => {
     addMessage(data);
     io.sockets.in(data.room).emit('message', data);
   })
+
+  socket.on('requestRoom', function(room) {
+    console.log('joining request room', room);
+    socket.join(room);
+  })
+
+  socket.on('request', function(data) {
+    console.log('request received from user: ', data);
+    io.sockets.in(data.room).emit('request', data);
+  })
 });
 
 const addMessage = async (messagedata) => {
   await Messages.messageModel.update({participants: messagedata.room}, {$push:{'messages': {'user':messagedata.user, 'text': messagedata.message}}});
 }
-
-

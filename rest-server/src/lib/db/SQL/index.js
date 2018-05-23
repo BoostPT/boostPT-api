@@ -375,3 +375,68 @@ export const dropEventsTable = async () => {
     error('error dropping events table ', err);
   }
 };
+// Trainer Requests Table
+
+export const createTrainerRequestsTable = async () => {
+  try {
+    await db.query(
+      `
+      CREATE TABLE IF NOT EXISTS trainerRequests
+      (
+        id SERIAL,
+        client_id INT NOT NULL,
+        trainer_id INT NOT NULL
+      )
+      `
+    );
+    success('successfully created trainerRequests table')
+  } catch (err) {
+    error('error creating trainerRequests table ', err);
+  }
+};
+
+export const dropTrainerRequestsTable = async () => {
+  try {
+    await db.query(
+      `DROP TABLE IF EXISTS trainerRequests cascade`
+    );
+  } catch (err) {
+    error('error dropping trainerRequests table ', err);
+  }
+};
+
+// Trainer Client Table
+
+export const createTrainerClientUserTable = async () => {
+  try {
+    await db.query(
+      `
+      CREATE TABLE IF NOT EXISTS trainerClientUser
+      (
+        id SERIAL,
+        client_id INT NOT NULL,
+        trainer_id INT NOT NULL,
+        CONSTRAINT trainerClientUser_pk
+          PRIMARY KEY(id),
+        CONSTRAINT fk_trainerClientUser_client_id
+          FOREIGN KEY(client_id) REFERENCES users(id),
+        CONSTRAINT fk_trainerClientUser_trainer_id
+          FOREIGN KEY(trainer_id) REFERENCES users(id)
+      )
+      `
+    );
+    success('successfully created trainerClientUser table')
+  } catch (err) {
+    error('error creating trainerClientUser table ', err);
+  }
+};
+
+export const droptrainerClientUserTable = async () => {
+  try {
+    await db.query(
+      `DROP TABLE IF EXISTS trainerClientUser cascade`
+    );
+  } catch (err) {
+    error('error dropping trainerClientUser table ', err);
+  }
+};
