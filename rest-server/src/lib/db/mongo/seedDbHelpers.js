@@ -2,8 +2,6 @@ import mongoose from 'mongoose';
 import Messages from './index.js';
 import {error, success} from "../../log";
 
-mongoose.connect('mongodb://localhost/boostpt');
-
 export const dropMessagesCollection = async () => {
   try {
     await Messages.messageModel.remove({});

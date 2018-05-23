@@ -1,6 +1,6 @@
 
 import db from '../../config/database';
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 import Messages from '../../lib/db/mongo/index.js';
 import {error, success} from "../../lib/log";
 

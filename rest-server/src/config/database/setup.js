@@ -33,6 +33,8 @@ import {
   dropMessagesCollection
 } from '../../lib/db/mongo/seedDbHelpers';
 
+import '../mongoDB';
+
 const setup = async () => {
   await dropDatabase();
   await dropUserTable();
@@ -58,8 +60,8 @@ const setup = async () => {
   await createEventsTable();
   await addUserDummyData();
   await addTrainerClientNonUserDummyData();
-  // await dropMessagesCollection();
-  // await addMessagesDummyData();
+  await dropMessagesCollection();
+  await addMessagesDummyData();
   process.exit();
 };
 
