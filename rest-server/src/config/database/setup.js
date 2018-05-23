@@ -11,8 +11,6 @@ import {
   createEventsTable,
   createTrainerClientUserTable,
   createTrainerRequestsTable,
-  createTrainerClientUserTable,
-  createTrainerRequestsTable,
   dropDatabase,
   dropUserTable,
   dropWorkoutTable,
