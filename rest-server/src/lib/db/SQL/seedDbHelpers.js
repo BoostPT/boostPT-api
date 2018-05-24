@@ -19,6 +19,9 @@ export const addUserDummyData = async () => {
     await db.query(
       `INSERT INTO users (email, username, password, istrainer) VALUES ('${'vijuhas@gmail.com'}', '${'david'}', '${hashedPassword}', '${'true'}')`
     );
+    await db.query(
+      `INSERT INTO users (email, username, password, istrainer) VALUES ('${'zach@gallagher.com'}', '${'zgallagher'}', '${hashedPassword}', '${'true'}')`
+    );
     success('successfully seeded users table');
   } catch (err) {
     error('error adding dummy user', err);
