@@ -41,7 +41,6 @@ export const workoutQuery = async (payload, url) => {
       let i = 0;
       while (i < exercises.rows.length) {
         payload.exercise_id = exercises.rows[i].id;
-        console.log('MADE IT HERE!', payload)
         const star = await globalQueryHelper(payload, starExerciseExistance, 'starExerciseExistance', ['exercise_id', 'user_id']);
         if (star.rows[0].exists) {
           await globalQueryHelper(payload, deleteStarExercise, 'deleteStarExercise', ['exercise_id', 'user_id']);
