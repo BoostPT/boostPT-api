@@ -33,7 +33,8 @@ const envBuild = {
     'NOSQL_AWS_PASSWORD=',
     'NOSQL_AWS_PORT=27017',
     'SALT_ROUNDS=10',
-    'TOKEN_SECRET=fitnessguru'
+    'TOKEN_SECRET=fitnessguru',
+    'S3_BUCKET='
   ],
   'socket-server': [
     'NODE_ENV=test',

@@ -40,3 +40,5 @@ INSTRUCTIONS FOR RUNNING API
    see a successful connection to port 8000 and
    a successful connection to postgres boostpt 
 
+7. Ethereum contract setup
+ - Windows: cd into solidity folder from root directory, run ../node_modules/.bin/truffle.cmd compile
