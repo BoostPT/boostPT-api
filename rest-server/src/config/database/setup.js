@@ -21,21 +21,9 @@ import {
   dropStarExerciseTable,
   dropEventsTable,
   dropTrainerClientNonUserTable,
-  useDatabase,
   droptrainerClientUserTable,
   dropTrainerRequestsTable
 } from '../../lib/db/SQL';
-
-// Temp until we make more seed data files
-import {
-  addUserDummyData,
-  addTrainerClientNonUserDummyData
-} from '../../lib/db/SQL/seedDbHelpers';
-
-import {
-  addMessagesDummyData,
-  dropMessagesCollection
-} from '../../lib/db/mongo/seedDbHelpers';
 
 import '../mongoDB';
 
@@ -66,10 +54,6 @@ const setup = async () => {
   await createEventsTable();
   await createTrainerClientUserTable();
   await createTrainerRequestsTable();
-  await addUserDummyData();
-  await addTrainerClientNonUserDummyData();
-  await dropMessagesCollection();
-  await addMessagesDummyData();
   process.exit();
 };
 

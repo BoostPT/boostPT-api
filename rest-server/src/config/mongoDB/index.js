@@ -13,7 +13,7 @@ const options = {
   }, 
   authSource: process.env.NODE_ENV === 'production' ? process.env.NOSQL_AWS_HOST : process.env.NOSQL_LOCAL_HOST,
   port: process.env.NODE_ENV = 'production' ? process.env.NOSQL_AWS_PORT : process.env.NOSQL_LOCAL_PORT
-}
+};
 
 // mongoose.connect(`mongodb://${options.auth.user}:${options.auth.password}@${options.authSource}:${options.port}/boostpt`);
 mongoose.connect(`mongodb://localhost:27017/boostpt`);
@@ -24,5 +24,3 @@ mongoDB.on('error', (err) => {
 mongoDB.once('open', () => {
   success('successfully connected to mongoDB', options.authSource);
 });
-
-export default mongoDB;
