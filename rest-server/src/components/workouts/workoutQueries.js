@@ -12,7 +12,9 @@ import {
   getStarredExercisesByUser,
   fetchPublicWorkoutsByUser,
   starWorkoutExistance,
-  deleteStarWorkout
+  deleteStarWorkout,
+  starExerciseExistance,
+  deleteStarExercise
 } from './workoutSQLHelpers';
 
 export const workoutQuery = async (payload, url) => {
@@ -33,27 +35,22 @@ export const workoutQuery = async (payload, url) => {
     try {
       // query for exercises by workout id
       const exercises = await globalQueryHelper(payload, fetchExerciseIdsByWorkout, 'fetchExerciseIdsByWorkout', ['workout_id']);
-
       await globalQueryHelper(payload, deleteFromExerciseWorkout, 'deleteFromExerciseWorkout', ['workout_id']);
-
       await globalQueryHelper(payload, deleteFromUsersWorkouts, 'deleteFromUsersWorkouts', ['workout_id']);
-
-      const star = await globalQueryHelper(req.body, starExerciseExistance, 'starExerciseExistance', ['exercise_id', 'user_id']);
-
-      if (star.rows[0].exists) {
-        await globalQueryHelper(req.body, deleteStarExercise, 'deleteStarExercise', ['exercise_id', 'user_id']);
-      }
-      
-      await globalQueryHelper(payload, deleteStarWorkout, 'deleteStarWorkout'['workout_id', 'user_id']);
-
       // iterate over exercises and delete each from exercises
       let i = 0;
       while (i < exercises.rows.length) {
-        payload.id = exercises.rows[i].id;
-        await globalQueryHelper(payload, deleteFromExercises, 'deleteFromExercises', ['id']);
+        payload.exercise_id = exercises.rows[i].id;
+        const star = await globalQueryHelper(payload, starExerciseExistance, 'starExerciseExistance', ['exercise_id', 'user_id']);
+        if (star.rows[0].exists) {
+          await globalQueryHelper(payload, deleteStarExercise, 'deleteStarExercise', ['exercise_id', 'user_id']);
+        }
+        await globalQueryHelper(payload, deleteFromExercises, 'deleteFromExercises', ['exercise_id']);
         i++;
       }
+      await globalQueryHelper(payload, deleteStarWorkout, 'deleteStarWorkout', ['workout_id', 'user_id']);
       await globalQueryHelper(payload, deleteFromWorkouts, 'deleteFromWorkouts', ['workout_id']);
+
     } catch (err) {
       return err;
     }
