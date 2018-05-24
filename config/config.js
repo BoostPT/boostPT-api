@@ -34,7 +34,7 @@ const envBuild = {
     'NOSQL_AWS_PORT=27017',
     'SALT_ROUNDS=10',
     'TOKEN_SECRET=fitnessguru',
-    'S3_BUCKET='
+    'S3_BUCKET=boostpt'
   ],
   'socket-server': [
     'NODE_ENV=test',
