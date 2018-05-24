@@ -21,11 +21,15 @@
     "nodemon": "^1.17.3",
     "npm-run-all": "^4.1.2",
     "truffle": "^4.1.11"
+    "scrypt": "^6.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "babel-register": "^6.26.0"
+    "babel-register": "^6.26.0",
+    "ethereumjs-wallet": "^0.6.0",
+    "truffle-wallet-provider": "0.0.5",
+    "web3": "^1.0.0-beta.34"
   }
 }
