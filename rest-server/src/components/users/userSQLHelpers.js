@@ -24,7 +24,7 @@ export const addUserPictureHelper = `
 
 export const fetchAllTrainersHelper = `
   SELECT 
-    id, username, email, picture 
+    id, username, email, picture, isTrainer 
   FROM 
     users 
   WHERE 

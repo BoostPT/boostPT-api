@@ -19,7 +19,8 @@
     "dotenv": "^5.0.1",
     "env": "^0.0.2",
     "nodemon": "^1.17.3",
-    "npm-run-all": "^4.1.2"
+    "npm-run-all": "^4.1.2",
+    "truffle": "^4.1.11"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
