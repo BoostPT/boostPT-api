@@ -1,15 +1,14 @@
-import mongoose from 'mongoose';
 import Messages from './index.js';
 import {error, success} from "../../log";
 
 export const dropMessagesCollection = async () => {
   try {
     await Messages.messageModel.remove({});
-    success('collection removed');
+    success('Messages collection removed');
   } catch (err) {
-    error('error dropping collection');
+    error('error dropping Messages collection');
   }
-}
+};
 
 export const addMessagesDummyData = async () => {
   let message = new Messages.messageModel ({
@@ -28,12 +27,12 @@ export const addMessagesDummyData = async () => {
         text: 'its been fun', 
       },
     ],
-  })
+  });
   try {
     await message.save();
     success('successfully seeded messages table');
   } catch (err) {
     error('error seeding messages table');
   }
-}
+};
 
